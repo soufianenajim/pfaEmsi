@@ -3,17 +3,28 @@ package com.cashPlus.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+	
 @MappedSuperclass
-
 public abstract class Historized implements Serializable {
 
 	private static final long serialVersionUID = 5715137963962755929L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID")
+	protected Long id;
+	
+
+
 	@Column(name = "CREATED_AT", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date createdAt;
@@ -38,4 +49,19 @@ public abstract class Historized implements Serializable {
 		this.updatedAt = updatedAt;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Historized [id=" + id + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+	
+
+	
 }
