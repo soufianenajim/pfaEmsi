@@ -1,16 +1,8 @@
 package com.cashPlus.service;
 
-import org.springframework.data.domain.Pageable;
-
+import com.cashPlus.dto.UserDTO;
 import com.cashPlus.model.User;
-import com.cashPlus.model.base.PartialList;
 
-public interface UserService {
-	User save(User user);
-
-	User findById(long idUser);
-
-	void deleteUser(User u);
+public interface UserService extends CrudService<User,UserDTO>{
 	
-	PartialList<User> finByCriteres(Pageable page,String name);
 }

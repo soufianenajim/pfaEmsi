@@ -1,0 +1,82 @@
+package com.cashPlus.service.impl;
+
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.cashPlus.dao.RoleRepository;
+import com.cashPlus.dto.RoleDTO;
+import com.cashPlus.model.Role;
+import com.cashPlus.model.base.PartialList;
+import com.cashPlus.service.RoleService;
+
+@Service
+public class RoleServiceImpl implements RoleService {
+	@Autowired
+	RoleRepository roleRepository;
+
+
+
+	@Override
+	public PartialList<RoleDTO> findByCriteres(Pageable page, String name) {
+		Page<Role> resultat;
+		if (name.equals("") && name.length() == 0) {
+			resultat = roleRepository.findAll(page);
+		} else {
+			resultat = roleRepository.findByCriters(page, name);
+		}
+
+		return convertToListDTO(new PartialList<>(resultat.getTotalElements(), resultat.getContent()));
+	}
+
+
+
+	@Override
+	public Role save(Role role) {
+	
+		return roleRepository.save(role);
+	}
+
+
+
+	@Override
+	public Role findById(long idRole) {
+		
+		return roleRepository.findById(idRole).get();
+	}
+
+
+
+	@Override
+	public void delete(Role role) {
+		roleRepository.deleteById(role.getId());
+	}
+
+
+
+	@Override
+	public Role convertDTOtoModel(RoleDTO u) {
+	
+		return new Role(u.getRoleName());
+	}
+
+
+
+	@Override
+	public PartialList<RoleDTO> convertToListDTO(PartialList<Role> list) {
+		return new PartialList<>(list.getCount(),
+				list.getLignes().stream().map(e -> convertModelToDTO(e)).collect(Collectors.toList()));
+	}
+
+
+
+	@Override
+	public RoleDTO convertModelToDTO(Role u) {
+		
+		return new RoleDTO(u.getRoleName());
+	}
+
+}

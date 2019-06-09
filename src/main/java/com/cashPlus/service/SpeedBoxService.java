@@ -1,5 +1,9 @@
 package com.cashPlus.service;
 
-public interface SpeedBoxService {
+import com.cashPlus.dto.SpeedBoxdDTO;
+import com.cashPlus.model.SpeedBox;
+
+public interface SpeedBoxService  extends CrudService<SpeedBox,SpeedBoxdDTO>{
+	
 
 }

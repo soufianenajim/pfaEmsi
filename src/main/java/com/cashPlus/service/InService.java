@@ -1,5 +1,8 @@
 package com.cashPlus.service;
 
-public interface InService {
+import com.cashPlus.dto.InDTO;
+import com.cashPlus.model.In;
 
+public interface InService extends CrudService<In,InDTO>{
+	
 }

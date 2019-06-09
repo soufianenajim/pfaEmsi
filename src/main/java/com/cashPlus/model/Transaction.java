@@ -15,13 +15,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public abstract class Transaction extends Historized {
 	
 	
-	public Transaction( String borderaux, String date, double montantTransfer, @NotNull User refUser) {
-		
-		this.borderaux = borderaux;
-		this.date = date;
-		this.montantTransfer = montantTransfer;
-		this.refUser = refUser;
-	}
+
 
 	/**
 	 * 
@@ -40,7 +34,25 @@ public abstract class Transaction extends Historized {
 	@JoinColumn(name = "REF_USER")
 	@NotNull
 	private User refUser;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "REF_ARCHIVE")
+	private Archive refArchive;
+	
+	@Column(name = "isArchive6")
+	private boolean isArchive;
 
+	public Transaction() {
+		super();
+	}
+
+	public Transaction( String borderaux, String date, double montantTransfer, @NotNull User refUser) {
+		
+		this.borderaux = borderaux;
+		this.date = date;
+		this.montantTransfer = montantTransfer;
+		this.refUser = refUser;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -79,6 +91,22 @@ public abstract class Transaction extends Historized {
 
 	public void setRefUser(User refUser) {
 		this.refUser = refUser;
+	}
+
+	public Archive getRefArchive() {
+		return refArchive;
+	}
+
+	public void setRefArchive(Archive refArchive) {
+		this.refArchive = refArchive;
+	}
+
+	public boolean isArchive() {
+		return isArchive;
+	}
+
+	public void setArchive(boolean isArchive) {
+		this.isArchive = isArchive;
 	}
 
 	@Override

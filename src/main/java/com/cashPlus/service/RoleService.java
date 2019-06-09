@@ -1,5 +1,8 @@
 package com.cashPlus.service;
 
-public interface RoleService {
+import com.cashPlus.dto.RoleDTO;
+import com.cashPlus.model.Role;
 
+public interface RoleService extends CrudService<Role,RoleDTO>{
+	
 }

@@ -1,5 +1,8 @@
 package com.cashPlus.service;
 
-public interface CtmService {
+import com.cashPlus.dto.CtmDTO;
+import com.cashPlus.model.Ctm;
 
+public interface CtmService extends CrudService<Ctm,CtmDTO> {
+	
 }

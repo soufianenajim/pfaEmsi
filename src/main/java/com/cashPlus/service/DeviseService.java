@@ -1,5 +1,9 @@
 package com.cashPlus.service;
 
-public interface DeviseService {
+import com.cashPlus.dto.DeviseDTO;
+import com.cashPlus.model.Devise;
+
+public interface DeviseService extends CrudService<Devise,DeviseDTO> {
+	
 
 }

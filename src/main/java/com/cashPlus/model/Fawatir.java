@@ -8,6 +8,11 @@ public abstract class Fawatir extends Transaction {
 
 	private static final long serialVersionUID = 1L;
 
+	public Fawatir() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Fawatir( String borderaux, String date, double montantTransfer, @NotNull User refUser,
 			double frais) {
 		super( borderaux, date, montantTransfer, refUser);

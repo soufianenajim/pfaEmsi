@@ -15,12 +15,19 @@ public class NeoSurfPayExpress extends Transaction{
 	private static final long serialVersionUID = 1L;
 	
 	
-	public NeoSurfPayExpress(String borderaux, String date, double montantTransfer, @NotNull User refUser) {
-		super(borderaux, date, montantTransfer, refUser);
-		// TODO Auto-generated constructor stub
-	}
+
+	
 	@Column(name = "num_commande")
 	private String numCommande;
+	
+	
+
+
+	public NeoSurfPayExpress(String borderaux, String date, double montantTransfer, @NotNull User refUser,
+			String numCommande) {
+		super(borderaux, date, montantTransfer, refUser);
+		this.numCommande = numCommande;
+	}
 	public String getNumCommande() {
 		return numCommande;
 	}

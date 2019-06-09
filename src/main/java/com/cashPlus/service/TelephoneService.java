@@ -1,5 +1,8 @@
 package com.cashPlus.service;
 
-public interface TelephoneService {
+import com.cashPlus.dto.TelephoneDTO;
+import com.cashPlus.model.Telephone;
 
+public interface TelephoneService extends CrudService<Telephone,TelephoneDTO>{
+	
 }

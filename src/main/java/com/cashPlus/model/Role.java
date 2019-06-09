@@ -21,6 +21,13 @@ public class Role extends Historized {
 	@OrderBy("ID DESC")
 	@OneToMany(mappedBy = "refRole")
 	private Collection<UserRole> useRoles;
+	
+	
+
+	public Role(String roleName) {
+		super();
+		this.roleName = roleName;
+	}
 
 	public String getRoleName() {
 		return roleName;

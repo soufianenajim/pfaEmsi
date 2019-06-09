@@ -13,18 +13,18 @@ public class In extends Transaction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-	public In(String borderaux, String date, double montantTransfer, @NotNull User refUser) {
-		super(borderaux, date, montantTransfer, refUser);
-		// TODO Auto-generated constructor stub
-	}
 
 	@Column(name = "sms")
 	private Long sms;
-	
+
 	@Column(name = "frais")
 	private double frais;
+
+	public In(String borderaux, String date, double montantTransfer, @NotNull User refUser, Long sms, double frais) {
+		super(borderaux, date, montantTransfer, refUser);
+		this.sms = sms;
+		this.frais = frais;
+	}
 
 	public Long getSms() {
 		return sms;
@@ -46,6 +46,5 @@ public class In extends Transaction {
 	public String toString() {
 		return "In [sms=" + sms + ", frais=" + frais + ", toString()=" + super.toString() + "]";
 	}
-	
 
 }

@@ -1,5 +1,9 @@
 package com.cashPlus.service;
 
-public interface EauElectriciteService {
+import com.cashPlus.dto.EauElectriciteDTO;
+import com.cashPlus.model.EauElectricite;
+
+public interface EauElectriciteService extends CrudService<EauElectricite,EauElectriciteDTO>{
+	
 
 }

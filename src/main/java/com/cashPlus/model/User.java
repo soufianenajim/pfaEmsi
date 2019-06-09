@@ -13,7 +13,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.cashPlus.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name = "user")
@@ -55,6 +57,7 @@ public class User extends Historized {
 	@NotNull
 	private Boolean isOffline = false;
 	
+	@JsonIgnore
 	@OrderBy("ID DESC")
 	@OneToMany(mappedBy = "refUser")
 	private Collection<UserRole> useRoles;
@@ -74,7 +77,13 @@ public class User extends Historized {
 		this.isOnline = isOnline;
 		this.isOffline = isOffline;
 	}
+
 	
+
+	public User(UserDTO user) {
+		super();
+
+	}
 
 	public User(@NotNull String login, @NotNull String password, String firstName, String lastName, String token,
 			Date tokenDate, @NotNull Boolean isOnline, @NotNull Boolean isOffline) {
