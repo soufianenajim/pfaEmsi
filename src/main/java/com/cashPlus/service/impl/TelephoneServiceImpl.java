@@ -37,7 +37,7 @@ public class TelephoneServiceImpl implements TelephoneService {
 	@Override
 	public Telephone save(Telephone telephone) {
 	
-		return telephoneRepository.save(telephone);
+		return telephoneRepository.saveAndFlush(telephone);
 	}
 
 

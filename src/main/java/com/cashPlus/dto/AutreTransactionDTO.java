@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class AutreTransactionDTO extends TransactionDTO{
 
@@ -9,12 +9,15 @@ public class AutreTransactionDTO extends TransactionDTO{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public AutreTransactionDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser, String info) {
-		super(borderaux, date, montantTransfer, refUser);
-		this.info = info;
-	}
+	
 	
 	private String info ;
+	
+	public AutreTransactionDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date,
+			double montantTransfer, UserDTO refUser, String info) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser);
+		this.info = info;
+	}
 	public String getInfo() {
 		return info;
 	}

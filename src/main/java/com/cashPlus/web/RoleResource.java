@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cashPlus.dto.UserDTO;
-import com.cashPlus.model.User;
+import com.cashPlus.dto.RoleDTO;
+import com.cashPlus.model.Role;
 import com.cashPlus.model.base.ConstantBase;
 import com.cashPlus.model.base.PartialList;
-import com.cashPlus.service.UserService;
+import com.cashPlus.service.RoleService;
 
 @RestController
-@RequestMapping("/user")
-public class UserResource {
+@RequestMapping("/role")
+public class RoleResource {
 	@Autowired
-	UserService userService;
+	RoleService roleService;
 
 	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
-	public PartialList<UserDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
-		return userService.findByCriteres(PageRequest.of(page, size), name);
+	public PartialList<RoleDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
+		return roleService.findByCriteres(PageRequest.of(page, size), name);
 	}
 
 	/*
@@ -36,16 +36,16 @@ public class UserResource {
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	 */
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
-	public UserDTO save(@RequestBody UserDTO userDTO) throws IOException {
-		User user = userService.convertDTOtoModel(userDTO);
-		return userService.convertModelToDTO(user);
+	public RoleDTO save(@RequestBody RoleDTO roleDTO) throws IOException {
+		Role role = roleService.convertDTOtoModel(roleDTO);
+		return roleService.convertModelToDTO(role);
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
-		User user = userService.findById(id);
-		if (user != null && user.getId() != null) {
-			userService.delete(user);
+		Role role = roleService.findById(id);
+		if (role != null && role.getId() != null) {
+			roleService.delete(role);
 		}
 
 		return "deleted success";

@@ -1,6 +1,8 @@
 package com.cashPlus.dto;
 
-import java.util.Collection;
+import java.util.Date;
+
+import com.cashPlus.model.RoleName;
 
 
 public class RoleDTO extends HistorizedDTO {
@@ -9,37 +11,41 @@ public class RoleDTO extends HistorizedDTO {
 
 	
 	
-	private String roleName;
-	
-	
-	private Collection<UserRoleDTO> useRoles;
+	private String name;
 	
 	
 
-	public RoleDTO(String roleName) {
+	
+	
+
+
+	public RoleDTO() {
 		super();
-		this.roleName = roleName;
+		// TODO Auto-generated constructor stub
+	}
+
+	public RoleDTO(Long id, Date createdAt, Date updatedAt) {
+		super(id, createdAt, updatedAt);
+		// TODO Auto-generated constructor stub
+	}
+
+	public RoleDTO(Long id, Date createdAt, Date updatedAt, String name) {
+		super(id, createdAt, updatedAt);
+		this.name = name;
 	}
 
 	public String getRoleName() {
-		return roleName;
+		return name;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleName(String name) {
+		this.name = name;
 	}
 
-	public Collection<UserRoleDTO> getUseRoles() {
-		return useRoles;
-	}
-
-	public void setUseRoles(Collection<UserRoleDTO> useRoles) {
-		this.useRoles = useRoles;
-	}
 
 	@Override
 	public String toString() {
-		return "Role [roleName=" + roleName + ", useRoles=" + useRoles + ", toString()=" + super.toString() + "]";
+		return "Role [name=" + name +  ", toString()=" + super.toString() + "]";
 	}
 
 	

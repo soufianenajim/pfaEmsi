@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public  class TransactionDTO extends HistorizedDTO {
 
@@ -8,13 +8,18 @@ public  class TransactionDTO extends HistorizedDTO {
 		super();
 	}
 
-	public TransactionDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser) {
 
+
+	public TransactionDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date,
+			double montantTransfer, UserDTO refUser) {
+		super(id, createdAt, updatedAt);
 		this.borderaux = borderaux;
 		this.date = date;
 		this.montantTransfer = montantTransfer;
 		this.refUser = refUser;
 	}
+
+
 
 	/**
 	 * 

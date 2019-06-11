@@ -39,7 +39,7 @@ public abstract class Transaction extends Historized {
 	@JoinColumn(name = "REF_ARCHIVE")
 	private Archive refArchive;
 	
-	@Column(name = "isArchive6")
+	@Column(name = "isArchive")
 	private boolean isArchive;
 
 	public Transaction() {

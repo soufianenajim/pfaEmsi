@@ -33,7 +33,7 @@ public class NeoSurfPayExpressServiceImpl implements NeoSurfPayExpressService {
 	@Override
 	public NeoSurfPayExpress save(NeoSurfPayExpress neoSurfExpress) {
 
-		return neoSurfPayExpressRepository.save(neoSurfExpress);
+		return neoSurfPayExpressRepository.saveAndFlush(neoSurfExpress);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class NeoSurfPayExpressServiceImpl implements NeoSurfPayExpressService {
 
 	@Override
 	public NeoSurfPayExpressDTO convertModelToDTO(NeoSurfPayExpress u) {
-		return new NeoSurfPayExpressDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(),u.getNumCommande());
+		return new NeoSurfPayExpressDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(),u.getNumCommande());
 	}
 
 	

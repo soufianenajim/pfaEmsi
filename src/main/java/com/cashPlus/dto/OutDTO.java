@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 
 public   class OutDTO extends TransactionDTO {
@@ -14,8 +14,10 @@ public   class OutDTO extends TransactionDTO {
 	private double frais;
 	
 	
-	public OutDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser, double frais) {
-		super(borderaux, date, montantTransfer, refUser);
+
+	public OutDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date, double montantTransfer,
+			UserDTO refUser, double frais) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser);
 		this.frais = frais;
 	}
 	public double getFrais() {

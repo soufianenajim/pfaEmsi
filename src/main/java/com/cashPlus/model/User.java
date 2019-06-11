@@ -1,13 +1,16 @@
 package com.cashPlus.model;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +18,6 @@ import javax.validation.constraints.NotNull;
 
 import com.cashPlus.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name = "user")
@@ -57,10 +59,12 @@ public class User extends Historized {
 	@NotNull
 	private Boolean isOffline = false;
 	
-	@JsonIgnore
-	@OrderBy("ID DESC")
-	@OneToMany(mappedBy = "refUser")
-	private Collection<UserRole> useRoles;
+	 @ManyToMany(fetch = FetchType.LAZY)
+		@JoinTable(name = "user_roles", 
+		      joinColumns = @JoinColumn(name = "user_id"), 
+		      inverseJoinColumns = @JoinColumn(name = "role_id"))
+		    private Set<Role> roles = new HashSet<>();
+
      
 	
 	
@@ -69,15 +73,15 @@ public class User extends Historized {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(@NotNull String login, @NotNull String password, @NotNull Boolean isOnline,
-			@NotNull Boolean isOffline) {
+	public User(String firstName,@NotNull String login, @NotNull String password) {
 		super();
+		this.firstName=firstName;
 		this.login = login;
 		this.password = password;
-		this.isOnline = isOnline;
-		this.isOffline = isOffline;
+		;
 	}
 
+	
 	
 
 	public User(UserDTO user) {
@@ -85,9 +89,9 @@ public class User extends Historized {
 
 	}
 
-	public User(@NotNull String login, @NotNull String password, String firstName, String lastName, String token,
+	public User(Long id ,@NotNull String login, @NotNull String password, String firstName, String lastName, String token,
 			Date tokenDate, @NotNull Boolean isOnline, @NotNull Boolean isOffline) {
-		super();
+		super(id);
 		this.login = login;
 		this.password = password;
 		this.firstName = firstName;
@@ -161,13 +165,15 @@ public class User extends Historized {
 	public void setIsOffline(Boolean isOffline) {
 		this.isOffline = isOffline;
 	}
+	
+	
 
-	public Collection<UserRole> getUseRoles() {
-		return useRoles;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setUseRoles(Collection<UserRole> useRoles) {
-		this.useRoles = useRoles;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 
 public class OutNationalDTO extends OutDTO{
@@ -10,13 +10,15 @@ public class OutNationalDTO extends OutDTO{
 	 */
 	private static final long serialVersionUID = -7747674835418302263L;
 
-
-
-	public OutNationalDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser,
-			double frais) {
-		super(borderaux, date, montantTransfer, refUser, frais);
-		
+	public OutNationalDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date,
+			double montantTransfer, UserDTO refUser, double frais) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser, frais);
+		// TODO Auto-generated constructor stub
 	}
+
+
+
+	
 
 	
 

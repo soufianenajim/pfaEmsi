@@ -1,12 +1,12 @@
 package com.cashPlus.model;
 
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "role")
@@ -14,48 +14,39 @@ public class Role extends Historized {
 
 	private static final long serialVersionUID = -8858004000210805400L;
 
-	
-	@Column(name = "role_name")
-	private String roleName;
-	
-	@OrderBy("ID DESC")
-	@OneToMany(mappedBy = "refRole")
-	private Collection<UserRole> useRoles;
-	
-	
+	@Enumerated(EnumType.STRING)
+	@NaturalId
+	@Column(length = 60)
+	private RoleName name;
 
-	public Role(String roleName) {
-		super();
-		this.roleName = roleName;
-	}
-
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-
-	public Collection<UserRole> getUseRoles() {
-		return useRoles;
-	}
-
-	public void setUseRoles(Collection<UserRole> useRoles) {
-		this.useRoles = useRoles;
-	}
+	   public Role() {
+		   super();
+	   }
+	   
+	    public Role(RoleName name) {
+	    	super();
+	        this.name = name;
+	    }
+	 
+	    public Long getId() {
+	        return id;
+	    }
+	 
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
+	 
+	    public RoleName getName() {
+	        return name;
+	    }
+	 
+	    public void setName(RoleName name) {
+	        this.name = name;
+	    }
 
 	@Override
 	public String toString() {
-		return "Role [roleName=" + roleName + ", useRoles=" + useRoles + ", toString()=" + super.toString() + "]";
+		return "Role [name=" + name + ", toString()=" + super.toString() + "]";
 	}
 
-	
-
-	
-
-
-	
-
-	
 }

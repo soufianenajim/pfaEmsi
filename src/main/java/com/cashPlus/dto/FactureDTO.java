@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class FactureDTO extends TelephoneDTO{
 
@@ -16,11 +16,17 @@ public class FactureDTO extends TelephoneDTO{
 	}
 
 
-	public FactureDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser, double frais,
-			String numTelephone) {
-		super(borderaux, date, montantTransfer, refUser, frais, numTelephone);
-	
+	public FactureDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date, double montantTransfer,
+			UserDTO refUser, double frais, String numTelephone) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser, frais, numTelephone);
+		// TODO Auto-generated constructor stub
 	}
+
+
+
+
+
+	
 
 	
 

@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cashPlus.dto.UserDTO;
-import com.cashPlus.model.User;
+import com.cashPlus.dto.VignetteDTO;
+import com.cashPlus.model.Vignette;
 import com.cashPlus.model.base.ConstantBase;
 import com.cashPlus.model.base.PartialList;
-import com.cashPlus.service.UserService;
+import com.cashPlus.service.VignetteService;
 
 @RestController
-@RequestMapping("/user")
-public class UserResource {
+@RequestMapping("/vignette")
+public class VignetteResource {
 	@Autowired
-	UserService userService;
+	VignetteService vignetteService;
 
 	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
-	public PartialList<UserDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
-		return userService.findByCriteres(PageRequest.of(page, size), name);
+	public PartialList<VignetteDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
+		return vignetteService.findByCriteres(PageRequest.of(page, size), name);
 	}
 
 	/*
@@ -36,16 +36,16 @@ public class UserResource {
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	 */
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
-	public UserDTO save(@RequestBody UserDTO userDTO) throws IOException {
-		User user = userService.convertDTOtoModel(userDTO);
-		return userService.convertModelToDTO(user);
+	public VignetteDTO save(@RequestBody VignetteDTO vignetteDTO) throws IOException {
+		Vignette vignette = vignetteService.convertDTOtoModel(vignetteDTO);
+		return vignetteService.convertModelToDTO(vignette);
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
-		User user = userService.findById(id);
-		if (user != null && user.getId() != null) {
-			userService.delete(user);
+		Vignette vignette = vignetteService.findById(id);
+		if (vignette != null && vignette.getId() != null) {
+			vignetteService.delete(vignette);
 		}
 
 		return "deleted success";

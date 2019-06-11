@@ -21,7 +21,7 @@ public class VignetteServiceImpl implements VignetteService {
 	@Override
 	public Vignette save(Vignette vignette) {
 
-		return vignetteRepository.save(vignette);
+		return vignetteRepository.saveAndFlush(vignette);
 	}
 
 	@Override
@@ -61,6 +61,6 @@ public class VignetteServiceImpl implements VignetteService {
 
 	@Override
 	public VignetteDTO convertModelToDTO(Vignette u) {
-		return new VignetteDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getMatriculeVehicule());	}
-
+		return new VignetteDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getMatriculeVehicule());	
+	}
 }

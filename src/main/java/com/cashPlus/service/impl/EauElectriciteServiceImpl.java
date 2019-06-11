@@ -33,7 +33,7 @@ public class EauElectriciteServiceImpl implements EauElectriciteService {
 	@Override
 	public EauElectricite save(EauElectricite eauElectricite) {
 
-		return eauElectriciteRepository.save(eauElectricite);
+		return eauElectriciteRepository.saveAndFlush(eauElectricite);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class EauElectriciteServiceImpl implements EauElectriciteService {
 
 	@Override
 	public EauElectriciteDTO convertModelToDTO(EauElectricite u) {
-		return new EauElectriciteDTO(u.getBorderaux(),u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumFacture());
+		return new EauElectriciteDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(),u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumFacture());
 	}
 
 }

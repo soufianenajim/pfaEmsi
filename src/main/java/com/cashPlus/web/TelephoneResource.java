@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cashPlus.dto.UserDTO;
-import com.cashPlus.model.User;
+import com.cashPlus.dto.TelephoneDTO;
+import com.cashPlus.model.Telephone;
 import com.cashPlus.model.base.ConstantBase;
 import com.cashPlus.model.base.PartialList;
-import com.cashPlus.service.UserService;
+import com.cashPlus.service.TelephoneService;
 
 @RestController
-@RequestMapping("/user")
-public class UserResource {
+@RequestMapping("/telephone")
+public class TelephoneResource {
 	@Autowired
-	UserService userService;
+	TelephoneService telephoneService;
 
 	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
-	public PartialList<UserDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
-		return userService.findByCriteres(PageRequest.of(page, size), name);
+	public PartialList<TelephoneDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
+		return telephoneService.findByCriteres(PageRequest.of(page, size), name);
 	}
 
 	/*
@@ -36,16 +36,16 @@ public class UserResource {
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	 */
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
-	public UserDTO save(@RequestBody UserDTO userDTO) throws IOException {
-		User user = userService.convertDTOtoModel(userDTO);
-		return userService.convertModelToDTO(user);
+	public TelephoneDTO save(@RequestBody TelephoneDTO telephoneDTO) throws IOException {
+		Telephone telephone = telephoneService.convertDTOtoModel(telephoneDTO);
+		return telephoneService.convertModelToDTO(telephone);
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
-		User user = userService.findById(id);
-		if (user != null && user.getId() != null) {
-			userService.delete(user);
+		Telephone telephone = telephoneService.findById(id);
+		if (telephone != null && telephone.getId() != null) {
+			telephoneService.delete(telephone);
 		}
 
 		return "deleted success";

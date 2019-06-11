@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class NeoSurfPayExpressDTO extends TransactionDTO {
 
@@ -10,9 +10,10 @@ public class NeoSurfPayExpressDTO extends TransactionDTO {
 	private static final long serialVersionUID = 1L;
 	private String numCommande;
 
-	public NeoSurfPayExpressDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser,
-			String numCommande) {
-		super(borderaux, date, montantTransfer, refUser);
+
+	public NeoSurfPayExpressDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date,
+			double montantTransfer, UserDTO refUser, String numCommande) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser);
 		this.numCommande = numCommande;
 	}
 

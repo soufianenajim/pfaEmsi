@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 
 public class AutreFawatirDTO extends FawatirDTO {
@@ -10,14 +10,16 @@ public class AutreFawatirDTO extends FawatirDTO {
 	 */
 	
 	private static final long serialVersionUID = 1L;
-	
-	public AutreFawatirDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser, double frais,
-			String refPaiement) {
-		super(borderaux, date, montantTransfer, refUser, frais);
-		this.refPaiement = refPaiement;
-	}
+
 	
 	private String refPaiement;
+	
+	
+	public AutreFawatirDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date,
+			double montantTransfer, UserDTO refUser, double frais, String refPaiement) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser, frais);
+		this.refPaiement = refPaiement;
+	}
 	public String getRefPaiement() {
 		return refPaiement;
 	}

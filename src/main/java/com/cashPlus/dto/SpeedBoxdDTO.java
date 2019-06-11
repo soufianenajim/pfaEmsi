@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class SpeedBoxdDTO extends TransactionDTO {
 
@@ -9,13 +9,15 @@ public class SpeedBoxdDTO extends TransactionDTO {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SpeedBoxdDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser,
-			String numColis) {
-		super(borderaux, date, montantTransfer, refUser);
-		this.numColis = numColis;
-	}
+
 
 	private String numColis;
+
+	public SpeedBoxdDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date, double montantTransfer,
+			UserDTO refUser, String numColis) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser);
+		this.numColis = numColis;
+	}
 
 	public String getNumColis() {
 		return numColis;

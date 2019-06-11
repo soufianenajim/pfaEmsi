@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cashPlus.dto.UserDTO;
-import com.cashPlus.model.User;
+import com.cashPlus.dto.RechargeDTO;
+import com.cashPlus.model.Recharge;
 import com.cashPlus.model.base.ConstantBase;
 import com.cashPlus.model.base.PartialList;
-import com.cashPlus.service.UserService;
+import com.cashPlus.service.RechargeService;
 
 @RestController
-@RequestMapping("/user")
-public class UserResource {
+@RequestMapping("/recharge")
+public class RechargeResource {
 	@Autowired
-	UserService userService;
+	RechargeService rechargeService;
 
 	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
-	public PartialList<UserDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
-		return userService.findByCriteres(PageRequest.of(page, size), name);
+	public PartialList<RechargeDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
+		return rechargeService.findByCriteres(PageRequest.of(page, size), name);
 	}
 
 	/*
@@ -36,16 +36,16 @@ public class UserResource {
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	 */
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
-	public UserDTO save(@RequestBody UserDTO userDTO) throws IOException {
-		User user = userService.convertDTOtoModel(userDTO);
-		return userService.convertModelToDTO(user);
+	public RechargeDTO save(@RequestBody RechargeDTO rechargeDTO) throws IOException {
+		Recharge recharge = rechargeService.convertDTOtoModel(rechargeDTO);
+		return rechargeService.convertModelToDTO(recharge);
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
-		User user = userService.findById(id);
-		if (user != null && user.getId() != null) {
-			userService.delete(user);
+		Recharge recharge = rechargeService.findById(id);
+		if (recharge != null && recharge.getId() != null) {
+			rechargeService.delete(recharge);
 		}
 
 		return "deleted success";

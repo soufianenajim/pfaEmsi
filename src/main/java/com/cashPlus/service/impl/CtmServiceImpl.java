@@ -33,7 +33,7 @@ public class CtmServiceImpl implements CtmService {
 	@Override
 	public Ctm save(Ctm ctm) {
 
-		return ctmRepository.save(ctm);
+		return ctmRepository.saveAndFlush(ctm);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class CtmServiceImpl implements CtmService {
 
 	@Override
 	public CtmDTO convertModelToDTO(Ctm u) {
-		return new CtmDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(),
+		return new CtmDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(),
 				u.getNumCtm());
 
 	}

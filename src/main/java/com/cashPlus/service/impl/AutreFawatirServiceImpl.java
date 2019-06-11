@@ -8,13 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.cashPlus.dao.AutreFawatirRepository;
-import com.cashPlus.dao.UserRepository;
 import com.cashPlus.dto.AutreFawatirDTO;
 import com.cashPlus.model.AutreFawatir;
-import com.cashPlus.model.User;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.AutreFawatirService;
-import com.cashPlus.service.UserService;
 
 @Service
 public class AutreFawatirServiceImpl implements AutreFawatirService {
@@ -36,7 +33,7 @@ public class AutreFawatirServiceImpl implements AutreFawatirService {
 	@Override
 	public AutreFawatir save(AutreFawatir autreFawatir) {
 
-		return autreFawatirRepository.save(autreFawatir);
+		return autreFawatirRepository.saveAndFlush(autreFawatir);
 	}
 
 	@Override
@@ -67,7 +64,7 @@ public class AutreFawatirServiceImpl implements AutreFawatirService {
 
 	@Override
 	public AutreFawatirDTO convertModelToDTO(AutreFawatir autreFawatir) {
-		return new AutreFawatirDTO(autreFawatir.getBorderaux(), autreFawatir.getDate(),
+		return new AutreFawatirDTO(autreFawatir.getId(),autreFawatir.getCreatedAt(),autreFawatir.getUpdatedAt(),autreFawatir.getBorderaux(), autreFawatir.getDate(),
 				autreFawatir.getMontantTransfer(), convertModelToDTO(autreFawatir).getRefUser(),
 				autreFawatir.getFrais(), autreFawatir.getRefPaiement());
 	}

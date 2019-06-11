@@ -2,8 +2,6 @@ package com.cashPlus.service;
 
 import org.springframework.data.domain.Pageable;
 
-import com.cashPlus.dto.UserDTO;
-import com.cashPlus.model.User;
 import com.cashPlus.model.base.PartialList;
 
 public interface CrudService<T, U> {

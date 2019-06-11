@@ -33,7 +33,7 @@ public class DeviseServiceImpl implements DeviseService {
 	@Override
 	public Devise save(Devise devise) {
 
-		return deviseRepository.save(devise);
+		return deviseRepository.saveAndFlush(devise);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class DeviseServiceImpl implements DeviseService {
 	@Override
 	public DeviseDTO convertModelToDTO(Devise u) {
 		
-		return new DeviseDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getQualiteClient());
+		return new DeviseDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getQualiteClient());
 	}
 
 }

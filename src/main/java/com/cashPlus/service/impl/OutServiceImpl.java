@@ -33,7 +33,7 @@ public class OutServiceImpl implements OutService {
 	@Override
 	public Out save(Out neoSurfExpress) {
 
-		return outRepository.save(neoSurfExpress);
+		return outRepository.saveAndFlush(neoSurfExpress);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class OutServiceImpl implements OutService {
 
 	@Override
 	public OutDTO convertModelToDTO(Out u) {
-		return	new OutDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais());
+		return	new OutDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais());
 	}
 
 	

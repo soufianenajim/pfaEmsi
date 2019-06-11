@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 
 public class DeviseDTO extends TransactionDTO {
@@ -11,15 +11,17 @@ public class DeviseDTO extends TransactionDTO {
 	private static final long serialVersionUID = 1L;
 	
 	
-	
+	private String qualiteClient;
 
-	public DeviseDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser, String qualiteClient) {
-		super(borderaux, date, montantTransfer, refUser);
+	
+	
+	public DeviseDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date, double montantTransfer,
+			UserDTO refUser, String qualiteClient) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser);
 		this.qualiteClient = qualiteClient;
 	}
 
 	
-	private String qualiteClient;
 
 	public String getQualiteClient() {
 		return qualiteClient;

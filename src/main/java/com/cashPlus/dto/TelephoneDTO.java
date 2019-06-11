@@ -1,7 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
-
+import java.util.Date;
 
 public   class TelephoneDTO extends FawatirDTO {
 
@@ -17,13 +16,15 @@ public   class TelephoneDTO extends FawatirDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TelephoneDTO( String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser,
-			double frais, String numTelephone) {
-		super( borderaux, date, montantTransfer, refUser, frais);
-		this.numTelephone = numTelephone;
-	}
+
 	
 	private String numTelephone;
+	
+	public TelephoneDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date, double montantTransfer,
+			UserDTO refUser, double frais, String numTelephone) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser, frais);
+		this.numTelephone = numTelephone;
+	}
 	public String getNumTelephone() {
 		return numTelephone;
 	}

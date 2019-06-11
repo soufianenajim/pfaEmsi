@@ -33,7 +33,7 @@ public class RechargeServiceImpl implements RechargeService {
 	@Override
 	public Recharge save(Recharge neoSurfExpress) {
 
-		return rechargeRepository.save(neoSurfExpress);
+		return rechargeRepository.saveAndFlush(neoSurfExpress);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class RechargeServiceImpl implements RechargeService {
 	@Override
 	public RechargeDTO convertModelToDTO(Recharge u) {
 		
-		return new RechargeDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumTelephone());
+		return new RechargeDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumTelephone());
 	}
 
 }

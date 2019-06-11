@@ -33,7 +33,7 @@ public class InServiceImpl implements InService {
 	@Override
 	public In save(In in) {
 
-		return inRepository.save(in);
+		return inRepository.saveAndFlush(in);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class InServiceImpl implements InService {
 	@Override
 	public InDTO convertModelToDTO(In u) {
 		
-		return new InDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getSms(), u.getFrais());
+		return new InDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getSms(), u.getFrais());
 	}
 
 }

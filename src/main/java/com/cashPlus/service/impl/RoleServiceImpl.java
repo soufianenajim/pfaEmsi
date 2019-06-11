@@ -37,7 +37,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Role save(Role role) {
 	
-		return roleRepository.save(role);
+		return roleRepository.saveAndFlush(role);
 	}
 
 
@@ -60,7 +60,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Role convertDTOtoModel(RoleDTO u) {
 	
-		return new Role(u.getRoleName());
+		return new Role();
 	}
 
 
@@ -76,7 +76,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public RoleDTO convertModelToDTO(Role u) {
 		
-		return new RoleDTO(u.getRoleName());
+		return new RoleDTO();
 	}
 
 }

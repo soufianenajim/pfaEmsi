@@ -50,13 +50,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User convertDTOtoModel(final UserDTO u) {
-		return new User(u.getLogin(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getToken(),
+		return new User(u.getId(),u.getLogin(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getToken(),
 				u.getTokenDate(), u.getIsOnline(), u.getIsOffline());
 
 	}
 
 	public UserDTO convertModelToDTO(final User u) {
-		return new UserDTO(u.getLogin(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getToken(),
+		return new UserDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getLogin(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getToken(),
 				u.getTokenDate(), u.getIsOnline(), u.getIsOffline());
 
 	}

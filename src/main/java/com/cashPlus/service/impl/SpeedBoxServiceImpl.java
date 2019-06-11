@@ -37,7 +37,7 @@ public class SpeedBoxServiceImpl implements SpeedBoxService {
 	@Override
 	public SpeedBox save(SpeedBox speedBox) {
 	
-		return speedBoxRepository.save(speedBox);
+		return speedBoxRepository.saveAndFlush(speedBox);
 	}
 
 
@@ -75,7 +75,7 @@ public class SpeedBoxServiceImpl implements SpeedBoxService {
 
 	@Override
 	public SpeedBoxdDTO convertModelToDTO(SpeedBox u) {
-		return new SpeedBoxdDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(),convertModelToDTO(u).getRefUser(), u.getNumColis());
+		return new SpeedBoxdDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(),convertModelToDTO(u).getRefUser(), u.getNumColis());
 	}
 
 }

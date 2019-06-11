@@ -17,6 +17,18 @@ public abstract class Historized implements Serializable {
 
 	private static final long serialVersionUID = 5715137963962755929L;
 	
+	public Historized(Long id) {
+		super();
+		this.id = id;
+	}
+	
+
+	public Historized() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)

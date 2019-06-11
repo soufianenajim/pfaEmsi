@@ -33,7 +33,7 @@ public class FactureServiceImpl implements FactureService {
 	@Override
 	public Facture save(Facture neoSurfExpress) {
 
-		return factureRepository.save(neoSurfExpress);
+		return factureRepository.saveAndFlush(neoSurfExpress);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class FactureServiceImpl implements FactureService {
 	@Override
 	public FactureDTO convertModelToDTO(Facture u) {
 		
-		return new FactureDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumTelephone());
+		return new FactureDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(), u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumTelephone());
 	}
 
 }

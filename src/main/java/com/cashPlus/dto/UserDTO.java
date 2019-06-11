@@ -2,10 +2,10 @@ package com.cashPlus.dto;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.cashPlus.model.Role;
 
 public class UserDTO extends HistorizedDTO {
 
@@ -14,53 +14,32 @@ public class UserDTO extends HistorizedDTO {
 	 */
 	private static final long serialVersionUID = 7263208288016824088L;
 
-	
 	private String login;
 
-	
 	private String password;
-	
-	
+
 	private String firstName;
 
-	
 	private String lastName;
 
-	
 	private String token;
 
-	
 	private Date tokenDate;
-
 
 	private Boolean isOnline = false;
 
-	
 	private Boolean isOffline = false;
-	
-	@JsonIgnore
-	private Collection<UserRoleDTO> useRoles;
-     
-	
-	
+
+    private Set<Role> roles = new HashSet<>();
+
 	public UserDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDTO(@NotNull String login, @NotNull String password, @NotNull Boolean isOnline,
-			@NotNull Boolean isOffline) {
-		super();
-		this.login = login;
-		this.password = password;
-		this.isOnline = isOnline;
-		this.isOffline = isOffline;
-	}
-	
-
-	public UserDTO(@NotNull String login, @NotNull String password, String firstName, String lastName, String token,
-			Date tokenDate, @NotNull Boolean isOnline, @NotNull Boolean isOffline) {
-		super();
+	public UserDTO(Long id, Date createdAt, Date updatedAt, String login, String password, String firstName,
+			String lastName, String token, Date tokenDate, Boolean isOnline, Boolean isOffline) {
+		super(id, createdAt, updatedAt);
 		this.login = login;
 		this.password = password;
 		this.firstName = firstName;
@@ -69,6 +48,7 @@ public class UserDTO extends HistorizedDTO {
 		this.tokenDate = tokenDate;
 		this.isOnline = isOnline;
 		this.isOffline = isOffline;
+	
 	}
 
 	public String getFirstName() {
@@ -135,21 +115,20 @@ public class UserDTO extends HistorizedDTO {
 		this.isOffline = isOffline;
 	}
 
-	public Collection<UserRoleDTO> getUseRoles() {
-		return useRoles;
+
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setUseRoles(Collection<UserRoleDTO> useRoles) {
-		this.useRoles = useRoles;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override
 	public String toString() {
 		return "User [login=" + login + ", password=" + password + ", token=" + token + ", tokenDate=" + tokenDate
-				+ ", isOnline=" + isOnline + ", isOffline=" + isOffline +  ", toString()="
-				+ super.toString() + "]";
+				+ ", isOnline=" + isOnline + ", isOffline=" + isOffline + ", toString()=" + super.toString() + "]";
 	}
 
-
-	
 }

@@ -16,6 +16,21 @@ public class HistorizedDTO implements Serializable {
 
 	protected Date updatedAt;
 
+	public HistorizedDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public HistorizedDTO(Long id, Date createdAt, Date updatedAt) {
+	super();
+	this.id = id;
+	this.createdAt = createdAt;
+	this.updatedAt = updatedAt;
+}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}

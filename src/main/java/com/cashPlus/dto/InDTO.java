@@ -1,6 +1,6 @@
 package com.cashPlus.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class InDTO extends TransactionDTO {
 
@@ -13,9 +13,11 @@ public class InDTO extends TransactionDTO {
 
 	private double frais;
 
-	public InDTO(String borderaux, String date, double montantTransfer, @NotNull UserDTO refUser, Long sms,
-			double frais) {
-		super(borderaux, date, montantTransfer, refUser);
+
+
+	public InDTO(Long id, Date createdAt, Date updatedAt, String borderaux, String date, double montantTransfer,
+			UserDTO refUser, Long sms, double frais) {
+		super(id, createdAt, updatedAt, borderaux, date, montantTransfer, refUser);
 		this.sms = sms;
 		this.frais = frais;
 	}

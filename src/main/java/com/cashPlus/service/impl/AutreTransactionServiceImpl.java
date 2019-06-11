@@ -33,7 +33,7 @@ public class AutreTransactionServiceImpl implements AutreTransactionService {
 	@Override
 	public AutreTransaction save(AutreTransaction autreTransaction) {
 
-		return autreTransactionRepository.save(autreTransaction);
+		return autreTransactionRepository.saveAndFlush(autreTransaction);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class AutreTransactionServiceImpl implements AutreTransactionService {
 	@Override
 	public AutreTransactionDTO convertModelToDTO(AutreTransaction u) {
 
-		return new AutreTransactionDTO(u.getBorderaux(), u.getDate(), u.getMontantTransfer(),
+		return new AutreTransactionDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(),
 				convertModelToDTO(u).getRefUser(), u.getInfo());
 	}
 
