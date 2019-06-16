@@ -12,12 +12,14 @@ import com.cashPlus.dto.OutDTO;
 import com.cashPlus.model.Out;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.OutService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class OutServiceImpl implements OutService {
 	@Autowired
 	OutRepository outRepository;
-
+	@Autowired
+	UserService userService;
 	@Override
 	public PartialList<OutDTO> findByCriteres(Pageable page, String name) {
 		Page<Out> resultat;
@@ -62,7 +64,7 @@ public class OutServiceImpl implements OutService {
 
 	@Override
 	public OutDTO convertModelToDTO(Out u) {
-		return	new OutDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais());
+		return	new OutDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais());
 	}
 
 	

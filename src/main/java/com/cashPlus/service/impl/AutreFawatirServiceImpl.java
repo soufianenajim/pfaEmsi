@@ -12,12 +12,15 @@ import com.cashPlus.dto.AutreFawatirDTO;
 import com.cashPlus.model.AutreFawatir;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.AutreFawatirService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class AutreFawatirServiceImpl implements AutreFawatirService {
 	@Autowired
 	AutreFawatirRepository autreFawatirRepository;
 
+	@Autowired
+	UserService userService;
 	@Override
 	public PartialList<AutreFawatirDTO> findByCriteres(Pageable page, String name) {
 		Page<AutreFawatir> resultat;
@@ -65,7 +68,7 @@ public class AutreFawatirServiceImpl implements AutreFawatirService {
 	@Override
 	public AutreFawatirDTO convertModelToDTO(AutreFawatir autreFawatir) {
 		return new AutreFawatirDTO(autreFawatir.getId(),autreFawatir.getCreatedAt(),autreFawatir.getUpdatedAt(),autreFawatir.getBorderaux(), autreFawatir.getDate(),
-				autreFawatir.getMontantTransfer(), convertModelToDTO(autreFawatir).getRefUser(),
+				autreFawatir.getMontantTransfer(), userService.convertModelToDTO(autreFawatir.getRefUser()),
 				autreFawatir.getFrais(), autreFawatir.getRefPaiement());
 	}
 

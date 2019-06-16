@@ -12,12 +12,14 @@ import com.cashPlus.dto.FactureDTO;
 import com.cashPlus.model.Facture;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.FactureService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class FactureServiceImpl implements FactureService {
 	@Autowired
 	FactureRepository factureRepository;
-
+	@Autowired
+	UserService userService;
 	@Override
 	public PartialList<FactureDTO> findByCriteres(Pageable page, String name) {
 		Page<Facture> resultat;
@@ -62,7 +64,7 @@ public class FactureServiceImpl implements FactureService {
 	@Override
 	public FactureDTO convertModelToDTO(Facture u) {
 		
-		return new FactureDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(), u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumTelephone());
+		return new FactureDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(), u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais(), u.getNumTelephone());
 	}
 
 }

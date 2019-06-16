@@ -12,13 +12,15 @@ import com.cashPlus.dto.TelephoneDTO;
 import com.cashPlus.model.Telephone;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.TelephoneService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class TelephoneServiceImpl implements TelephoneService {
 	@Autowired
 	TelephoneRepository telephoneRepository;
 
-
+	@Autowired
+	UserService userService;
 
 	@Override
 	public PartialList<TelephoneDTO> findByCriteres(Pageable page, String name) {
@@ -74,8 +76,8 @@ public class TelephoneServiceImpl implements TelephoneService {
 
 	@Override
 	public TelephoneDTO convertModelToDTO(Telephone t) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new TelephoneDTO(t.getId(), t.getCreatedAt(), t.getUpdatedAt(),t.getBorderaux(), t.getDate(), t.getMontantTransfer(), userService.convertModelToDTO(t.getRefUser()), t.getFrais(), t.getNumTelephone());
 	}
 
 }

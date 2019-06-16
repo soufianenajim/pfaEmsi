@@ -12,12 +12,14 @@ import com.cashPlus.dto.InDTO;
 import com.cashPlus.model.In;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.InService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class InServiceImpl implements InService {
 	@Autowired
 	InRepository inRepository;
-
+	@Autowired
+	UserService userService;
 	@Override
 	public PartialList<InDTO> findByCriteres(Pageable page, String name) {
 		Page<In> resultat;
@@ -62,7 +64,7 @@ public class InServiceImpl implements InService {
 	@Override
 	public InDTO convertModelToDTO(In u) {
 		
-		return new InDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getSms(), u.getFrais());
+		return new InDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getSms(), u.getFrais());
 	}
 
 }

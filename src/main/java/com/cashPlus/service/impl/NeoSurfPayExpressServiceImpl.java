@@ -12,12 +12,14 @@ import com.cashPlus.dto.NeoSurfPayExpressDTO;
 import com.cashPlus.model.NeoSurfPayExpress;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.NeoSurfPayExpressService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class NeoSurfPayExpressServiceImpl implements NeoSurfPayExpressService {
 	@Autowired
 	NeoSurfPayExpressRepository neoSurfPayExpressRepository;
-
+	@Autowired
+	UserService userService;
 	@Override
 	public PartialList<NeoSurfPayExpressDTO> findByCriteres(Pageable page, String name) {
 		Page<NeoSurfPayExpress> resultat;
@@ -60,7 +62,7 @@ public class NeoSurfPayExpressServiceImpl implements NeoSurfPayExpressService {
 
 	@Override
 	public NeoSurfPayExpressDTO convertModelToDTO(NeoSurfPayExpress u) {
-		return new NeoSurfPayExpressDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(),u.getNumCommande());
+		return new NeoSurfPayExpressDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()),u.getNumCommande());
 	}
 
 	

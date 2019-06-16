@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.cashPlus.model.AutreFawatir;
 
-public interface AutreFawatirRepository extends JpaRepository<AutreFawatir, Long>{
+public interface ArchiveRepository extends JpaRepository<AutreFawatir, Long>{
 
 	@Query(value = "SELECT * FROM AutreFawatir  where borderaux like :name or   ref_paiement LIKE :name   ORDER BY id \n-- #pageable\n", countQuery = "SELECT count(*) FROM AutreFawatir  where borderaux like :name or   ref_paiement LIKE :name", nativeQuery = true)
 	Page<AutreFawatir> findByCriters(Pageable pageable,@Param("name")@NotNull String name);

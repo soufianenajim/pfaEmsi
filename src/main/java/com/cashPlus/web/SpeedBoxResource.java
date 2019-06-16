@@ -25,6 +25,13 @@ public class SpeedBoxResource {
 	@Autowired
 	SpeedBoxService speedBoxService;
 
+	
+	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public SpeedBox findById(@RequestParam Long id) {
+
+		return speedBoxService.findById(id);
+	}
 	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<SpeedBoxdDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {

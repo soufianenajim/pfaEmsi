@@ -12,11 +12,14 @@ import com.cashPlus.dto.DeviseDTO;
 import com.cashPlus.model.Devise;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.DeviseService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class DeviseServiceImpl implements DeviseService {
 	@Autowired
 	DeviseRepository deviseRepository;
+	@Autowired
+	UserService userService;
 
 	@Override
 	public PartialList<DeviseDTO> findByCriteres(Pageable page, String name) {
@@ -49,21 +52,23 @@ public class DeviseServiceImpl implements DeviseService {
 
 	@Override
 	public Devise convertDTOtoModel(DeviseDTO u) {
-		
-		return new Devise(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(), u.getQualiteClient());
+
+		return new Devise(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),
+				u.getQualiteClient());
 	}
 
 	@Override
 	public PartialList<DeviseDTO> convertToListDTO(PartialList<Devise> list) {
-		
+
 		return new PartialList<>(list.getCount(),
 				list.getLignes().stream().map(e -> convertModelToDTO(e)).collect(Collectors.toList()));
 	}
 
 	@Override
 	public DeviseDTO convertModelToDTO(Devise u) {
-		
-		return new DeviseDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getQualiteClient());
+
+		return new DeviseDTO(u.getId(), u.getCreatedAt(), u.getUpdatedAt(), u.getBorderaux(), u.getDate(),
+				u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getQualiteClient());
 	}
 
 }

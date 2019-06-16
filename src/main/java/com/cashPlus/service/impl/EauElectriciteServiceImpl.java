@@ -12,11 +12,14 @@ import com.cashPlus.dto.EauElectriciteDTO;
 import com.cashPlus.model.EauElectricite;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.EauElectriciteService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class EauElectriciteServiceImpl implements EauElectriciteService {
 	@Autowired
 	EauElectriciteRepository eauElectriciteRepository;
+	@Autowired
+	UserService userService;
 
 	@Override
 	public PartialList<EauElectriciteDTO> findByCriteres(Pageable page, String name) {
@@ -49,19 +52,21 @@ public class EauElectriciteServiceImpl implements EauElectriciteService {
 
 	@Override
 	public EauElectricite convertDTOtoModel(EauElectriciteDTO u) {
-		return new EauElectricite(u.getBorderaux(),u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(), u.getFrais(), u.getNumFacture());
+		return new EauElectricite(u.getBorderaux(), u.getDate(), u.getMontantTransfer(),
+				convertDTOtoModel(u).getRefUser(), u.getFrais(), u.getNumFacture());
 	}
 
 	@Override
 	public PartialList<EauElectriciteDTO> convertToListDTO(PartialList<EauElectricite> list) {
-		
+
 		return new PartialList<>(list.getCount(),
 				list.getLignes().stream().map(e -> convertModelToDTO(e)).collect(Collectors.toList()));
 	}
 
 	@Override
 	public EauElectriciteDTO convertModelToDTO(EauElectricite u) {
-		return new EauElectriciteDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(),u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumFacture());
+		return new EauElectriciteDTO(u.getId(), u.getCreatedAt(), u.getUpdatedAt(), u.getBorderaux(), u.getDate(),
+				u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais(), u.getNumFacture());
 	}
 
 }

@@ -12,11 +12,14 @@ import com.cashPlus.dto.RechargeDTO;
 import com.cashPlus.model.Recharge;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.RechargeService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class RechargeServiceImpl implements RechargeService {
 	@Autowired
 	RechargeRepository rechargeRepository;
+	@Autowired
+	UserService userService;
 
 	@Override
 	public PartialList<RechargeDTO> findByCriteres(Pageable page, String name) {
@@ -50,7 +53,8 @@ public class RechargeServiceImpl implements RechargeService {
 
 	@Override
 	public Recharge convertDTOtoModel(RechargeDTO u) {
-		return new Recharge(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(), u.getFrais(), u.getNumTelephone());
+		return new Recharge(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),
+				u.getFrais(), u.getNumTelephone());
 	}
 
 	@Override
@@ -61,8 +65,9 @@ public class RechargeServiceImpl implements RechargeService {
 
 	@Override
 	public RechargeDTO convertModelToDTO(Recharge u) {
-		
-		return new RechargeDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getNumTelephone());
+
+		return new RechargeDTO(u.getId(), u.getCreatedAt(), u.getUpdatedAt(), u.getBorderaux(), u.getDate(),
+				u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais(), u.getNumTelephone());
 	}
 
 }

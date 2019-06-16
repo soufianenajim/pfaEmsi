@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.cashPlus.model.User;
 import com.cashPlus.model.Vignette;
 
 public interface VignetteRepository extends JpaRepository<Vignette, Long>{

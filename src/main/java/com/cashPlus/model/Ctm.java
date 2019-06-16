@@ -11,9 +11,19 @@ public class Ctm extends Transaction{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8820217018926605807L;
+
+	/**
+	 * 
+	 */
 	
 	
+	
+	public Ctm() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Ctm(String borderaux, String date, double montantTransfer, @NotNull User refUser, String numCtm) {
 		super(borderaux, date, montantTransfer, refUser);
 		this.numCtm = numCtm;

@@ -26,6 +26,12 @@ public class RoleResource {
 	RoleService roleService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public Role findById(@RequestParam Long id) {
+
+		return roleService.findById(id);
+	}
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<RoleDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return roleService.findByCriteres(PageRequest.of(page, size), name);

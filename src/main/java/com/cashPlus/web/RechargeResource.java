@@ -26,6 +26,13 @@ public class RechargeResource {
 	RechargeService rechargeService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public RechargeDTO findById(@RequestParam Long id) {
+		Recharge r = rechargeService.findById(id);
+		return rechargeService.convertModelToDTO(r);
+	}
+
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<RechargeDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return rechargeService.findByCriteres(PageRequest.of(page, size), name);

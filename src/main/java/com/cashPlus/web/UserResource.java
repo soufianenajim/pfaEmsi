@@ -25,10 +25,18 @@ public class UserResource {
 	@Autowired
 	UserService userService;
 
+	
 	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<UserDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return userService.findByCriteres(PageRequest.of(page, size), name);
+	}
+	
+	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public User findById(@RequestParam Long id) {
+		
+		return userService.findById(id);
 	}
 
 	/*

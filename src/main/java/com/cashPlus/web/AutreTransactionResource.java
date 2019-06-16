@@ -26,6 +26,12 @@ public class AutreTransactionResource {
 	AutreTransactionService autreTransactionService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public	AutreTransactionDTO findById(@RequestParam Long id) {
+		AutreTransaction a=autreTransactionService.findById(id);
+		return autreTransactionService.convertModelToDTO(a);
+	}
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<AutreTransactionDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return autreTransactionService.findByCriteres(PageRequest.of(page, size), name);

@@ -26,20 +26,29 @@ public class AutreFawatirResource {
 	AutreFawatirService autreFawatirService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public AutreFawatirDTO findById(@RequestParam Long id) {
+		AutreFawatir a = autreFawatirService.findById(id);
+		return autreFawatirService.convertModelToDTO(a);
+	}
+
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
-	public PartialList<AutreFawatirDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
+	public PartialList<AutreFawatirDTO> find(@RequestParam int page, @RequestParam int size,
+			@RequestParam String name) {
 		return autreFawatirService.findByCriteres(PageRequest.of(page, size), name);
 	}
 
 	/*
 	 * // @ResponseBody // @ResponseStatus(value=HttpStatus.OK)
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
-	 */ 
+	 */
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
 	public AutreFawatirDTO save(@RequestBody AutreFawatirDTO autreFawatirDTO) throws IOException {
 		AutreFawatir autreFawatir = autreFawatirService.convertDTOtoModel(autreFawatirDTO);
 		return autreFawatirService.convertModelToDTO(autreFawatir);
 	}
+
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		AutreFawatir autreFawatir = autreFawatirService.findById(id);

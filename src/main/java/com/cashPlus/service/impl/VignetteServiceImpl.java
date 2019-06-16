@@ -11,13 +11,15 @@ import com.cashPlus.dao.VignetteRepository;
 import com.cashPlus.dto.VignetteDTO;
 import com.cashPlus.model.Vignette;
 import com.cashPlus.model.base.PartialList;
+import com.cashPlus.service.UserService;
 import com.cashPlus.service.VignetteService;
 
 @Service
 public class VignetteServiceImpl implements VignetteService {
 	@Autowired
 	VignetteRepository vignetteRepository;
-
+	@Autowired
+	UserService userService;
 	@Override
 	public Vignette save(Vignette vignette) {
 
@@ -61,6 +63,6 @@ public class VignetteServiceImpl implements VignetteService {
 
 	@Override
 	public VignetteDTO convertModelToDTO(Vignette u) {
-		return new VignetteDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(), u.getFrais(), u.getMatriculeVehicule());	
+		return new VignetteDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais(), u.getMatriculeVehicule());	
 	}
 }

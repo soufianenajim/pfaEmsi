@@ -2,8 +2,6 @@ package com.cashPlus.dto;
 
 import java.util.Date;
 
-import com.cashPlus.model.RoleName;
-
 
 public class RoleDTO extends HistorizedDTO {
 

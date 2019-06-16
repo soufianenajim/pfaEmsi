@@ -26,21 +26,30 @@ public class NeoSurfPayExpressResource {
 	NeoSurfPayExpressService neoSurfPayExpressService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public NeoSurfPayExpressDTO findById(@RequestParam Long id) {
+		NeoSurfPayExpress n = neoSurfPayExpressService.findById(id);
+		return neoSurfPayExpressService.convertModelToDTO(n);
+	}
+
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
-	public PartialList<NeoSurfPayExpressDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
+	public PartialList<NeoSurfPayExpressDTO> find(@RequestParam int page, @RequestParam int size,
+			@RequestParam String name) {
 		return neoSurfPayExpressService.findByCriteres(PageRequest.of(page, size), name);
 	}
 
 	/*
 	 * // @ResponseBody // @ResponseStatus(value=HttpStatus.OK)
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
-	 */ 
+	 */
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
-	public NeoSurfPayExpressDTO save(@RequestBody NeoSurfPayExpressDTO neoSurfPayExpressDTO,@RequestParam String id) throws IOException {
+	public NeoSurfPayExpressDTO save(@RequestBody NeoSurfPayExpressDTO neoSurfPayExpressDTO, @RequestParam String id)
+			throws IOException {
 		NeoSurfPayExpress neoSurfPayExpress = neoSurfPayExpressService.convertDTOtoModel(neoSurfPayExpressDTO);
 		return neoSurfPayExpressService.convertModelToDTO(neoSurfPayExpress);
 	}
-	
+
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		NeoSurfPayExpress neoSurfPayExpress = neoSurfPayExpressService.findById(id);

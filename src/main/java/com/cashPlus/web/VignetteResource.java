@@ -26,6 +26,13 @@ public class VignetteResource {
 	VignetteService vignetteService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public VignetteDTO findById(@RequestParam Long id) {
+		Vignette v = vignetteService.findById(id);
+		return vignetteService.convertModelToDTO(v);
+	}
+
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<VignetteDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return vignetteService.findByCriteres(PageRequest.of(page, size), name);

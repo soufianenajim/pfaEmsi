@@ -25,6 +25,13 @@ public class DeviseResource {
 	@Autowired
 	DeviseService deviseService;
 
+
+	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public	DeviseDTO findById(@RequestParam Long id) {
+		Devise d=deviseService.findById(id);
+		return deviseService.convertModelToDTO(d);
+	}
 	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<DeviseDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {

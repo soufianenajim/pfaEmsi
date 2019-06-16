@@ -12,13 +12,14 @@ import com.cashPlus.dto.SpeedBoxdDTO;
 import com.cashPlus.model.SpeedBox;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.SpeedBoxService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class SpeedBoxServiceImpl implements SpeedBoxService {
 	@Autowired
 	SpeedBoxRepository speedBoxRepository;
-
-
+	@Autowired
+	UserService userService;
 
 	@Override
 	public PartialList<SpeedBoxdDTO> findByCriteres(Pageable page, String name) {
@@ -32,38 +33,29 @@ public class SpeedBoxServiceImpl implements SpeedBoxService {
 		return convertToListDTO(new PartialList<>(resultat.getTotalElements(), resultat.getContent()));
 	}
 
-
-
 	@Override
 	public SpeedBox save(SpeedBox speedBox) {
-	
+
 		return speedBoxRepository.saveAndFlush(speedBox);
 	}
 
-
-
 	@Override
 	public SpeedBox findById(long idSpeedBox) {
-		
+
 		return speedBoxRepository.findById(idSpeedBox).get();
 	}
-
-
 
 	@Override
 	public void delete(SpeedBox speedBox) {
 		speedBoxRepository.deleteById(speedBox.getId());
 	}
 
-
-
 	@Override
 	public SpeedBox convertDTOtoModel(SpeedBoxdDTO u) {
-		
-		return new SpeedBox(u.getBorderaux(), u.getDate(), u.getMontantTransfer(),convertDTOtoModel(u).getRefUser(), u.getNumColis());
+
+		return new SpeedBox(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),
+				u.getNumColis());
 	}
-
-
 
 	@Override
 	public PartialList<SpeedBoxdDTO> convertToListDTO(PartialList<SpeedBox> list) {
@@ -71,11 +63,10 @@ public class SpeedBoxServiceImpl implements SpeedBoxService {
 				list.getLignes().stream().map(e -> convertModelToDTO(e)).collect(Collectors.toList()));
 	}
 
-
-
 	@Override
 	public SpeedBoxdDTO convertModelToDTO(SpeedBox u) {
-		return new SpeedBoxdDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(),convertModelToDTO(u).getRefUser(), u.getNumColis());
+		return new SpeedBoxdDTO(u.getId(), u.getCreatedAt(), u.getUpdatedAt(), u.getBorderaux(), u.getDate(),
+				u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getNumColis());
 	}
 
 }

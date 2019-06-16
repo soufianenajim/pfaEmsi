@@ -26,6 +26,13 @@ public class OutResource {
 	OutService outService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public OutDTO findById(@RequestParam Long id) {
+		Out o = outService.findById(id);
+		return outService.convertModelToDTO(o);
+	}
+
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<OutDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return outService.findByCriteres(PageRequest.of(page, size), name);
@@ -34,13 +41,13 @@ public class OutResource {
 	/*
 	 * // @ResponseBody // @ResponseStatus(value=HttpStatus.OK)
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
-	 */ 
+	 */
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
-	public OutDTO save(@RequestBody OutDTO outDTO,@RequestParam String id) throws IOException {
+	public OutDTO save(@RequestBody OutDTO outDTO, @RequestParam String id) throws IOException {
 		Out out = outService.convertDTOtoModel(outDTO);
 		return outService.convertModelToDTO(out);
 	}
-	
+
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		Out out = outService.findById(id);

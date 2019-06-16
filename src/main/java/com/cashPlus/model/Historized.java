@@ -13,10 +13,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 	
 @MappedSuperclass
-public abstract class Historized implements Serializable {
+public abstract class Historized implements Serializable  {
 
-	private static final long serialVersionUID = 5715137963962755929L;
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 190914183283672858L;
+
 	public Historized(Long id) {
 		super();
 		this.id = id;

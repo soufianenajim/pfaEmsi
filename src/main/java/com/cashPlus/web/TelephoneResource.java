@@ -26,6 +26,14 @@ public class TelephoneResource {
 	TelephoneService telephoneService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public TelephoneDTO findById(@RequestParam Long id) {
+		Telephone t = telephoneService.findById(id);
+
+		return telephoneService.convertModelToDTO(t);
+	}
+
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<TelephoneDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return telephoneService.findByCriteres(PageRequest.of(page, size), name);

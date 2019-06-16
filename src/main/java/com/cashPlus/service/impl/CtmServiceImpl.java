@@ -12,11 +12,14 @@ import com.cashPlus.dto.CtmDTO;
 import com.cashPlus.model.Ctm;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.CtmService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class CtmServiceImpl implements CtmService {
 	@Autowired
 	CtmRepository ctmRepository;
+	@Autowired
+	UserService userService;
 
 	@Override
 	public PartialList<CtmDTO> findByCriteres(Pageable page, String name) {
@@ -63,8 +66,9 @@ public class CtmServiceImpl implements CtmService {
 
 	@Override
 	public CtmDTO convertModelToDTO(Ctm u) {
-		return new CtmDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertModelToDTO(u).getRefUser(),
+		CtmDTO ctmDto=new CtmDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()),
 				u.getNumCtm());
+		return ctmDto;
 
 	}
 

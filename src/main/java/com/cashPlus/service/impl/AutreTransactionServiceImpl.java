@@ -12,12 +12,14 @@ import com.cashPlus.dto.AutreTransactionDTO;
 import com.cashPlus.model.AutreTransaction;
 import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.AutreTransactionService;
+import com.cashPlus.service.UserService;
 
 @Service
 public class AutreTransactionServiceImpl implements AutreTransactionService {
 	@Autowired
 	AutreTransactionRepository autreTransactionRepository;
-
+	@Autowired
+	UserService userService;
 	@Override
 	public PartialList<AutreTransactionDTO> findByCriteres(Pageable page, String name) {
 		Page<AutreTransaction> resultat;
@@ -65,7 +67,7 @@ public class AutreTransactionServiceImpl implements AutreTransactionService {
 	public AutreTransactionDTO convertModelToDTO(AutreTransaction u) {
 
 		return new AutreTransactionDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(),
-				convertModelToDTO(u).getRefUser(), u.getInfo());
+				userService.convertModelToDTO(u.getRefUser()), u.getInfo());
 	}
 
 }

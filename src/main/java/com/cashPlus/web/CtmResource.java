@@ -26,6 +26,12 @@ public class CtmResource {
 	CtmService ctmService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public	CtmDTO findById(@RequestParam Long id) {
+		Ctm ct=ctmService.findById(id);
+		return ctmService.convertModelToDTO(ct);
+	}
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<CtmDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return ctmService.findByCriteres(PageRequest.of(page, size), name);
@@ -38,6 +44,7 @@ public class CtmResource {
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
 	public CtmDTO save(@RequestBody CtmDTO ctmDTO) throws IOException {
 		Ctm ctm = ctmService.convertDTOtoModel(ctmDTO);
+		
 		return ctmService.convertModelToDTO(ctm);
 	}
 

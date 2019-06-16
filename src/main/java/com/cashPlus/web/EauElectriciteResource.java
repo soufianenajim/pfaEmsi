@@ -26,6 +26,12 @@ public class EauElectriciteResource {
 	EauElectriciteService eauElectriciteService;
 
 	@ResponseBody
+	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_ID)
+	public	EauElectriciteDTO findById(@RequestParam Long id) {
+		EauElectricite e=eauElectriciteService.findById(id);
+		return eauElectriciteService.convertModelToDTO(e);
+	}
+	@ResponseBody
 	@GetMapping(ConstantBase.CRUD_REST_FIND_BY_CRITERE)
 	public PartialList<EauElectriciteDTO> find(@RequestParam int page, @RequestParam int size, @RequestParam String name) {
 		return eauElectriciteService.findByCriteres(PageRequest.of(page, size), name);
