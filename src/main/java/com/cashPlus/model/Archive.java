@@ -49,10 +49,13 @@ public class Archive extends Historized {
 	@Column(name = "nbr_transaction", length = 100)
 	private int nbrTransaction;
 	
-//	@JsonIgnore
-//	@OrderBy("ID DESC")
-//	@OneToMany(mappedBy = "refArchive")
-//	private Collection<Transaction> transactions;
+
+	public Archive() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Archive(@NotNull String nomClient, @NotNull String prenomClient, @NotNull String cin, String numTelephone,
 			String borderaux, String date, String montantTransfer, String matriculePaiement, String chiffreAffaire,
 			int nbrTransaction) {

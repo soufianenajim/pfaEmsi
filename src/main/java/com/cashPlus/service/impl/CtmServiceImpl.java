@@ -53,7 +53,7 @@ public class CtmServiceImpl implements CtmService {
 	@Override
 	public Ctm convertDTOtoModel(CtmDTO u) {
 
-		return new Ctm(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),
+		return new Ctm(u.getBorderaux(), u.getDate(), u.getMontantTransfer(),u.getRefUser()!=null? u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null:null,
 				u.getNumCtm());
 	}
 
@@ -66,7 +66,7 @@ public class CtmServiceImpl implements CtmService {
 
 	@Override
 	public CtmDTO convertModelToDTO(Ctm u) {
-		CtmDTO ctmDto=new CtmDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()),
+		CtmDTO ctmDto=new CtmDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null:null,
 				u.getNumCtm());
 		return ctmDto;
 

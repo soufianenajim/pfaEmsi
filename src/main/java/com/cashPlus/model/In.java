@@ -25,6 +25,13 @@ public class In extends Transaction {
 		this.sms = sms;
 		this.frais = frais;
 	}
+	
+
+	public In() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public Long getSms() {
 		return sms;

@@ -46,10 +46,15 @@ public class AutreFawatirResource {
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
 	public AutreFawatirDTO save(@RequestBody AutreFawatirDTO autreFawatirDTO) throws IOException {
 		AutreFawatir autreFawatir = autreFawatirService.convertDTOtoModel(autreFawatirDTO);
-		return autreFawatirService.convertModelToDTO(autreFawatir);
+		autreFawatir=autreFawatirService.save(autreFawatir);
+			autreFawatirDTO.setCreatedAt(autreFawatir.getCreatedAt());
+		autreFawatirDTO.setUpdatedAt(autreFawatir.getUpdatedAt());
+		autreFawatirDTO.setId(autreFawatir.getId());
+		return autreFawatirDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@ResponseBody
 	public String delete(@RequestParam Long id) {
 		AutreFawatir autreFawatir = autreFawatirService.findById(id);
 		if (autreFawatir != null && autreFawatir.getId() != null) {

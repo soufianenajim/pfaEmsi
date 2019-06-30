@@ -21,6 +21,13 @@ public class Devise extends Transaction {
 		super(borderaux, date, montantTransfer, refUser);
 		this.qualiteClient = qualiteClient;
 	}
+	
+
+	public Devise() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	@Column(name = "qualite_client")
 	private String qualiteClient;

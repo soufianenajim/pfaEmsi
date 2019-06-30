@@ -23,6 +23,11 @@ public class OutInternational extends Out{
 		this.commission = commission;
 	}
 
+	public OutInternational() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public double getCommission() {
 		return commission;
 	}

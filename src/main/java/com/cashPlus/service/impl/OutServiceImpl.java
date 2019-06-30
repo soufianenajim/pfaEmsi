@@ -52,7 +52,7 @@ public class OutServiceImpl implements OutService {
 	@Override
 	public Out convertDTOtoModel(OutDTO u) {
 		
-	return	new Out(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(), u.getFrais());
+	return	new Out(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null, u.getFrais());
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class OutServiceImpl implements OutService {
 
 	@Override
 	public OutDTO convertModelToDTO(Out u) {
-		return	new OutDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais());
+		return	new OutDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null, u.getFrais());
 	}
 
 	

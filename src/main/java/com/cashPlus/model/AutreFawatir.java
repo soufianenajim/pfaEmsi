@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "autre_fawatir")
+@Table(name = "autrefawatir")
 public class AutreFawatir extends Fawatir {
 
 	/**
@@ -20,6 +20,12 @@ public class AutreFawatir extends Fawatir {
 		super(borderaux, date, montantTransfer, refUser, frais);
 		this.refPaiement = refPaiement;
 	}
+	
+	public AutreFawatir() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Column(name = "ref_paiement")
 	private String refPaiement;
 	public String getRefPaiement() {

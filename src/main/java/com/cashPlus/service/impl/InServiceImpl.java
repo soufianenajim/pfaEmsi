@@ -52,7 +52,7 @@ public class InServiceImpl implements InService {
 	@Override
 	public In convertDTOtoModel(InDTO u) {
 		
-	return new In(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(), u.getSms(), u.getFrais());
+	return new In(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null, u.getSms(), u.getFrais());
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class InServiceImpl implements InService {
 	@Override
 	public InDTO convertModelToDTO(In u) {
 		
-		return new InDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getSms(), u.getFrais());
+		return new InDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null, u.getSms(), u.getFrais());
 	}
 
 }

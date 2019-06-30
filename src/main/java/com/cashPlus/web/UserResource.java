@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.cashPlus.model.base.PartialList;
 import com.cashPlus.service.UserService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/user")
 public class UserResource {
 	@Autowired
@@ -46,10 +48,15 @@ public class UserResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public UserDTO save(@RequestBody UserDTO userDTO) throws IOException {
 		User user = userService.convertDTOtoModel(userDTO);
-		return userService.convertModelToDTO(user);
+		user=userService.save(user);
+		userDTO.setCreatedAt(user.getCreatedAt());
+		userDTO.setUpdatedAt(user.getUpdatedAt());
+		userDTO.setId(user.getId());
+		return userDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@ResponseBody
 	public String delete(@RequestParam Long id) {
 		User user = userService.findById(id);
 		if (user != null && user.getId() != null) {

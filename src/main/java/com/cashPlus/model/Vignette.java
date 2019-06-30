@@ -19,6 +19,13 @@ public class Vignette extends Fawatir {
 		super(borderaux, date, montantTransfer, refUser, frais);
 		this.matriculeVehicule = matriculeVehicule;
 	}
+	
+
+	public Vignette() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	@Column(name = "matricule_V")
 	private String matriculeVehicule;

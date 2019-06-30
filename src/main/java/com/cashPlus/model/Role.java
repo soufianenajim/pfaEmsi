@@ -19,6 +19,7 @@ public class Role extends Historized {
 	@Column(length = 60)
 	private RoleName name;
 
+		
 	   public Role() {
 		   super();
 	   }

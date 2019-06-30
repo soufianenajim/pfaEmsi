@@ -53,7 +53,7 @@ public class RechargeServiceImpl implements RechargeService {
 
 	@Override
 	public Recharge convertDTOtoModel(RechargeDTO u) {
-		return new Recharge(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),
+		return new Recharge(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null,
 				u.getFrais(), u.getNumTelephone());
 	}
 
@@ -67,7 +67,7 @@ public class RechargeServiceImpl implements RechargeService {
 	public RechargeDTO convertModelToDTO(Recharge u) {
 
 		return new RechargeDTO(u.getId(), u.getCreatedAt(), u.getUpdatedAt(), u.getBorderaux(), u.getDate(),
-				u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais(), u.getNumTelephone());
+				u.getMontantTransfer(), u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null, u.getFrais(), u.getNumTelephone());
 	}
 
 }

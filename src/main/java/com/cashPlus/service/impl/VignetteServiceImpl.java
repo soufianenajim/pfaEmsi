@@ -52,7 +52,7 @@ public class VignetteServiceImpl implements VignetteService {
 
 	@Override
 	public Vignette convertDTOtoModel(VignetteDTO u) {
-		return new Vignette(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(), u.getFrais(), u.getMatriculeVehicule());
+		return new Vignette(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null, u.getFrais(), u.getMatriculeVehicule());
 	}
 
 	@Override
@@ -63,6 +63,6 @@ public class VignetteServiceImpl implements VignetteService {
 
 	@Override
 	public VignetteDTO convertModelToDTO(Vignette u) {
-		return new VignetteDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getFrais(), u.getMatriculeVehicule());	
+		return new VignetteDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null, u.getFrais(), u.getMatriculeVehicule());	
 	}
 }

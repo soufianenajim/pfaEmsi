@@ -1,10 +1,6 @@
 package com.cashPlus.dto;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import com.cashPlus.model.Role;
 
 public class UserDTO extends HistorizedDTO {
 
@@ -23,13 +19,13 @@ public class UserDTO extends HistorizedDTO {
 
 	private String token;
 
-	private Date tokenDate;
+	private String tokenDate;
 
 	private Boolean isOnline = false;
 
 	private Boolean isOffline = false;
 
-    private Set<Role> roles = new HashSet<>();
+	private RoleDTO refRole;
 
 	public UserDTO() {
 		super();
@@ -37,7 +33,7 @@ public class UserDTO extends HistorizedDTO {
 	}
 
 	public UserDTO(Long id, Date createdAt, Date updatedAt, String login, String password, String firstName,
-			String lastName, String token, Date tokenDate, Boolean isOnline, Boolean isOffline) {
+			String lastName, String token, String tokenDate, Boolean isOnline, Boolean isOffline, RoleDTO refRole) {
 		super(id, createdAt, updatedAt);
 		this.login = login;
 		this.password = password;
@@ -47,7 +43,7 @@ public class UserDTO extends HistorizedDTO {
 		this.tokenDate = tokenDate;
 		this.isOnline = isOnline;
 		this.isOffline = isOffline;
-	
+		this.refRole = refRole;
 	}
 
 	public String getFirstName() {
@@ -90,11 +86,11 @@ public class UserDTO extends HistorizedDTO {
 		this.token = token;
 	}
 
-	public Date getTokenDate() {
+	public String getTokenDate() {
 		return tokenDate;
 	}
 
-	public void setTokenDate(Date tokenDate) {
+	public void setTokenDate(String tokenDate) {
 		this.tokenDate = tokenDate;
 	}
 
@@ -114,14 +110,14 @@ public class UserDTO extends HistorizedDTO {
 		this.isOffline = isOffline;
 	}
 
+	
 
-
-	public Set<Role> getRoles() {
-		return roles;
+	public RoleDTO getRefRole() {
+		return refRole;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setRefRole(RoleDTO refRole) {
+		this.refRole = refRole;
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import com.cashPlus.dao.UserRepository;
 import com.cashPlus.dto.UserDTO;
 import com.cashPlus.model.User;
 import com.cashPlus.model.base.PartialList;
+import com.cashPlus.service.RoleService;
 import com.cashPlus.service.UserService;
 
 @Service
@@ -18,6 +19,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRpository;
 
+	@Autowired
+	RoleService roleService;
 	@Override
 	public User save(User user) {
 
@@ -27,8 +30,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findById(long idUser) {
 
-		return userRpository.findById(idUser).get();
-	}
+		return userRpository.findById(idUser).isPresent()?userRpository.findById(idUser).get():null;	}
 
 	@Override
 	public void delete(User u) {
@@ -51,13 +53,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User convertDTOtoModel(final UserDTO u) {
 		return new User(u.getId(),u.getLogin(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getToken(),
-				u.getTokenDate(), u.getIsOnline(), u.getIsOffline());
+				u.getTokenDate(), u.getIsOnline(), u.getIsOffline(),u.getRefRole()!=null?roleService.convertDTOtoModel(u.getRefRole()):null);
 
 	}
 
 	public UserDTO convertModelToDTO(final User u) {
 		return new UserDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getLogin(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getToken(),
-				u.getTokenDate(), u.getIsOnline(), u.getIsOffline());
+				u.getTokenDate(), u.getIsOnline(), u.getIsOffline(),u.getRefRole()!=null?roleService.convertModelToDTO(u.getRefRole()):null);
 
 	}
 

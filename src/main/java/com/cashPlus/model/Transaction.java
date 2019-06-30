@@ -8,7 +8,6 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @MappedSuperclass
@@ -34,7 +33,6 @@ public abstract class Transaction extends Historized {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "REF_USER")
-	@NotNull
 	private User refUser;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

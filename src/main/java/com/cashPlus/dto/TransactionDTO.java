@@ -28,11 +28,11 @@ public  class TransactionDTO extends HistorizedDTO {
 
 	protected String borderaux;
 
-	private String date;
+	protected String date;
 
-	private double montantTransfer;
+	protected double montantTransfer;
 
-	private UserDTO refUser;
+	protected UserDTO refUser;
 
 	public Long getId() {
 		return id;

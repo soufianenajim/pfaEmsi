@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "out_transaction")
+@Table(name = "out")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 3)
 public class Out extends Transaction {
@@ -29,6 +29,13 @@ public class Out extends Transaction {
 		super(borderaux, date, montantTransfer, refUser);
 		this.frais = frais;
 	}
+	
+
+	public Out() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public double getFrais() {
 		return frais;

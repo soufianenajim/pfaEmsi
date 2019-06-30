@@ -16,6 +16,12 @@ public class OutNational extends Out{
 		// TODO Auto-generated constructor stub
 	}
 
+	public OutNational() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
 	
 
 	

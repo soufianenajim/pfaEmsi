@@ -53,7 +53,7 @@ public class SpeedBoxServiceImpl implements SpeedBoxService {
 	@Override
 	public SpeedBox convertDTOtoModel(SpeedBoxdDTO u) {
 
-		return new SpeedBox(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),
+		return new SpeedBox(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null,
 				u.getNumColis());
 	}
 
@@ -66,7 +66,7 @@ public class SpeedBoxServiceImpl implements SpeedBoxService {
 	@Override
 	public SpeedBoxdDTO convertModelToDTO(SpeedBox u) {
 		return new SpeedBoxdDTO(u.getId(), u.getCreatedAt(), u.getUpdatedAt(), u.getBorderaux(), u.getDate(),
-				u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getNumColis());
+				u.getMontantTransfer(), u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null, u.getNumColis());
 	}
 
 }

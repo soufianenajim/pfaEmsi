@@ -51,7 +51,7 @@ public class NeoSurfPayExpressServiceImpl implements NeoSurfPayExpressService {
 
 	@Override
 	public NeoSurfPayExpress convertDTOtoModel(NeoSurfPayExpressDTO u) {
-		return new NeoSurfPayExpress(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),u.getNumCommande());
+		return new NeoSurfPayExpress(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null,u.getNumCommande());
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class NeoSurfPayExpressServiceImpl implements NeoSurfPayExpressService {
 
 	@Override
 	public NeoSurfPayExpressDTO convertModelToDTO(NeoSurfPayExpress u) {
-		return new NeoSurfPayExpressDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()),u.getNumCommande());
+		return new NeoSurfPayExpressDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null,u.getNumCommande());
 	}
 
 	

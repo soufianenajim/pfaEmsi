@@ -53,7 +53,7 @@ public class AutreTransactionServiceImpl implements AutreTransactionService {
 	public AutreTransaction convertDTOtoModel(AutreTransactionDTO u) {
 
 		return new AutreTransaction(u.getBorderaux(), u.getDate(), u.getMontantTransfer(),
-				convertDTOtoModel(u).getRefUser(), u.getInfo());
+			u.getRefUser()!=null?	u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null:null, u.getInfo());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class AutreTransactionServiceImpl implements AutreTransactionService {
 	public AutreTransactionDTO convertModelToDTO(AutreTransaction u) {
 
 		return new AutreTransactionDTO(u.getId(),u.getCreatedAt(),u.getUpdatedAt(),u.getBorderaux(), u.getDate(), u.getMontantTransfer(),
-				userService.convertModelToDTO(u.getRefUser()), u.getInfo());
+				u.getRefUser()!=null?u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null:null, u.getInfo());
 	}
 
 }

@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 @Entity
-@Table(name = "neosurf_express")
+@Table(name = "neoSurfPayExpress")
 
 public class NeoSurfPayExpress extends Transaction{
 
@@ -28,6 +28,12 @@ public class NeoSurfPayExpress extends Transaction{
 		super(borderaux, date, montantTransfer, refUser);
 		this.numCommande = numCommande;
 	}
+	
+	public NeoSurfPayExpress() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNumCommande() {
 		return numCommande;
 	}

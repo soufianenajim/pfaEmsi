@@ -61,7 +61,7 @@ public class TelephoneServiceImpl implements TelephoneService {
 
 	@Override
 	public Telephone convertDTOtoModel(TelephoneDTO u) {
-	return new Telephone(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(), u.getFrais(), u.getNumTelephone());
+	return new Telephone(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null, u.getFrais(), u.getNumTelephone());
 	}
 
 
