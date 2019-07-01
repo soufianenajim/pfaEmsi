@@ -44,8 +44,12 @@ public class CtmResource {
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
 	public CtmDTO save(@RequestBody CtmDTO ctmDTO) throws IOException {
 		Ctm ctm = ctmService.convertDTOtoModel(ctmDTO);
+		ctm=ctmService.save(ctm);
+		ctmDTO.setCreatedAt(ctm.getCreatedAt());
+		ctmDTO.setUpdatedAt(ctm.getUpdatedAt());
+		ctmDTO.setId(ctm.getId());
+		return ctmDTO;
 		
-		return ctmService.convertModelToDTO(ctm);
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

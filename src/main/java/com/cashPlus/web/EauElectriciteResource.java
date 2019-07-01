@@ -44,7 +44,11 @@ public class EauElectriciteResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public EauElectriciteDTO save(@RequestBody EauElectriciteDTO eauElectriciteDTO) throws IOException {
 		EauElectricite eauElectricite = eauElectriciteService.convertDTOtoModel(eauElectriciteDTO);
-		return eauElectriciteService.convertModelToDTO(eauElectricite);
+		eauElectricite=eauElectriciteService.save(eauElectricite);
+		eauElectriciteDTO.setCreatedAt(eauElectricite.getCreatedAt());
+		eauElectriciteDTO.setUpdatedAt(eauElectricite.getUpdatedAt());
+		eauElectriciteDTO.setId(eauElectricite.getId());
+		return eauElectriciteDTO;
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

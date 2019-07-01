@@ -46,7 +46,11 @@ public class TelephoneResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public TelephoneDTO save(@RequestBody TelephoneDTO telephoneDTO) throws IOException {
 		Telephone telephone = telephoneService.convertDTOtoModel(telephoneDTO);
-		return telephoneService.convertModelToDTO(telephone);
+		telephone =telephoneService.save(telephone);
+		telephoneDTO.setCreatedAt(telephone.getCreatedAt());
+		telephoneDTO.setUpdatedAt(telephone.getUpdatedAt());
+		telephoneDTO.setId(telephone.getId());
+		return telephoneDTO;
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

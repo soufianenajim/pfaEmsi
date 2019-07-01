@@ -46,7 +46,12 @@ public class FactureResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public FactureDTO save(@RequestBody FactureDTO factureDTO) throws IOException {
 		Facture facture = factureService.convertDTOtoModel(factureDTO);
-		return factureService.convertModelToDTO(facture);
+		facture =factureService.save(facture);
+		factureDTO.setCreatedAt(facture.getCreatedAt());
+		factureDTO.setUpdatedAt(facture.getUpdatedAt());
+		factureDTO.setId(facture.getId());
+		return factureDTO;
+		
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

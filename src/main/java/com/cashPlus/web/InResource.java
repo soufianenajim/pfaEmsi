@@ -45,7 +45,11 @@ public class InResource {
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
 	public InDTO save(@RequestBody InDTO inDTO, @RequestParam String id) throws IOException {
 		In in = inService.convertDTOtoModel(inDTO);
-		return inService.convertModelToDTO(in);
+		in =inService.save(in);
+		inDTO.setCreatedAt(in.getCreatedAt());
+		inDTO.setUpdatedAt(in.getUpdatedAt());
+		inDTO.setId(in.getId());
+		return inDTO;
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

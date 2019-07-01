@@ -45,7 +45,11 @@ public class SpeedBoxResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public SpeedBoxdDTO save(@RequestBody SpeedBoxdDTO speedBoxDTO) throws IOException {
 		SpeedBox speedBox = speedBoxService.convertDTOtoModel(speedBoxDTO);
-		return speedBoxService.convertModelToDTO(speedBox);
+		speedBox =speedBoxService.save(speedBox);
+		speedBoxDTO.setCreatedAt(speedBox.getCreatedAt());
+		speedBoxDTO.setUpdatedAt(speedBox.getUpdatedAt());
+		speedBoxDTO.setId(speedBox.getId());
+		return speedBoxDTO;
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

@@ -44,7 +44,11 @@ public class AutreTransactionResource {
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
 	public AutreTransactionDTO save(@RequestBody AutreTransactionDTO autreTransactionDTO) throws IOException {
 		AutreTransaction autreTransaction = autreTransactionService.convertDTOtoModel(autreTransactionDTO);
-		return autreTransactionService.convertModelToDTO(autreTransaction);
+		autreTransaction =autreTransactionService.save(autreTransaction);
+		autreTransactionDTO.setCreatedAt(autreTransaction.getCreatedAt());
+		autreTransactionDTO.setUpdatedAt(autreTransaction.getUpdatedAt());
+		autreTransactionDTO.setId(autreTransaction.getId());
+		return autreTransactionDTO;
 	}
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {

@@ -45,7 +45,11 @@ public class VignetteResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public VignetteDTO save(@RequestBody VignetteDTO vignetteDTO) throws IOException {
 		Vignette vignette = vignetteService.convertDTOtoModel(vignetteDTO);
-		return vignetteService.convertModelToDTO(vignette);
+		vignette =vignetteService.save(vignette);
+		vignetteDTO.setCreatedAt(vignette.getCreatedAt());
+		vignetteDTO.setUpdatedAt(vignette.getUpdatedAt());
+		vignetteDTO.setId(vignette.getId());
+		return vignetteDTO;
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

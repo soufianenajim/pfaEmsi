@@ -44,7 +44,11 @@ public class RoleResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public RoleDTO save(@RequestBody RoleDTO roleDTO) throws IOException {
 		Role role = roleService.convertDTOtoModel(roleDTO);
-		return roleService.convertModelToDTO(role);
+		role =roleService.save(role);
+		roleDTO.setCreatedAt(role.getCreatedAt());
+		roleDTO.setUpdatedAt(role.getUpdatedAt());
+		roleDTO.setId(role.getId());
+		return roleDTO;
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)

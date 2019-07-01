@@ -45,7 +45,11 @@ public class RechargeResource {
 	@PostMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	public RechargeDTO save(@RequestBody RechargeDTO rechargeDTO) throws IOException {
 		Recharge recharge = rechargeService.convertDTOtoModel(rechargeDTO);
-		return rechargeService.convertModelToDTO(recharge);
+		recharge =rechargeService.save(recharge);
+		rechargeDTO.setCreatedAt(recharge.getCreatedAt());
+		rechargeDTO.setUpdatedAt(recharge.getUpdatedAt());
+		rechargeDTO.setId(recharge.getId());
+		return rechargeDTO;
 	}
 
 	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
