@@ -52,7 +52,7 @@ public class CtmResource {
 		
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		Ctm ctm = ctmService.findById(id);
 		if (ctm != null && ctm.getId() != null) {

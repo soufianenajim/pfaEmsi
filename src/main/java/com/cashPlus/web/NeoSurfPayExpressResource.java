@@ -44,7 +44,7 @@ public class NeoSurfPayExpressResource {
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	 */
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
-	public NeoSurfPayExpressDTO save(@RequestBody NeoSurfPayExpressDTO neoSurfPayExpressDTO, @RequestParam String id)
+	public NeoSurfPayExpressDTO save(@RequestBody NeoSurfPayExpressDTO neoSurfPayExpressDTO)
 			throws IOException {
 		NeoSurfPayExpress neoSurfPayExpress = neoSurfPayExpressService.convertDTOtoModel(neoSurfPayExpressDTO);
 		neoSurfPayExpress =neoSurfPayExpressService.save(neoSurfPayExpress);
@@ -54,7 +54,7 @@ public class NeoSurfPayExpressResource {
 		return neoSurfPayExpressDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		NeoSurfPayExpress neoSurfPayExpress = neoSurfPayExpressService.findById(id);
 		if (neoSurfPayExpress != null && neoSurfPayExpress.getId() != null) {

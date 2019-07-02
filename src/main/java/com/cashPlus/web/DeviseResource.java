@@ -43,7 +43,7 @@ public class DeviseResource {
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	 */ 
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
-	public DeviseDTO save(@RequestBody DeviseDTO deviseDTO,@RequestParam String id) throws IOException {
+	public DeviseDTO save(@RequestBody DeviseDTO deviseDTO) throws IOException {
 		Devise devise = deviseService.convertDTOtoModel(deviseDTO);
 		devise =deviseService.save(devise);
 		deviseDTO.setCreatedAt(devise.getCreatedAt());
@@ -52,7 +52,7 @@ public class DeviseResource {
 		return deviseDTO;
 	}
 	
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		Devise devise = deviseService.findById(id);
 		if (devise != null && devise.getId() != null) {

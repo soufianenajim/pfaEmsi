@@ -52,7 +52,7 @@ public class FactureServiceImpl implements FactureService {
 
 	@Override
 	public Facture convertDTOtoModel(FactureDTO u) {
-	return new Facture(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null, u.getFrais(), u.getNumTelephone());
+	return new Facture(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?userService.convertDTOtoModel(u.getRefUser()):null, u.getFrais(), u.getNumTelephone());
 	}
 
 	@Override

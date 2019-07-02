@@ -52,7 +52,7 @@ public class VignetteResource {
 		return vignetteDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		Vignette vignette = vignetteService.findById(id);
 		if (vignette != null && vignette.getId() != null) {

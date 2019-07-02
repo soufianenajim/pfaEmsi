@@ -53,7 +53,7 @@ public class EauElectriciteServiceImpl implements EauElectriciteService {
 	@Override
 	public EauElectricite convertDTOtoModel(EauElectriciteDTO u) {
 		return new EauElectricite(u.getBorderaux(), u.getDate(), u.getMontantTransfer(),
-				u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null, u.getFrais(), u.getNumFacture());
+				u.getRefUser()!=null?userService.convertDTOtoModel(u.getRefUser()):null, u.getFrais(), u.getNumFacture());
 	}
 
 	@Override

@@ -43,7 +43,7 @@ public class InResource {
 	 * // @PostMapping(ConstantBase.CRUD_REST_SAVE_OR_UPDATE)
 	 */
 	@RequestMapping(value = ConstantBase.CRUD_REST_SAVE_OR_UPDATE, method = RequestMethod.POST)
-	public InDTO save(@RequestBody InDTO inDTO, @RequestParam String id) throws IOException {
+	public InDTO save(@RequestBody InDTO inDTO) throws IOException {
 		In in = inService.convertDTOtoModel(inDTO);
 		in =inService.save(in);
 		inDTO.setCreatedAt(in.getCreatedAt());
@@ -52,7 +52,7 @@ public class InResource {
 		return inDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		In in = inService.findById(id);
 		if (in != null && in.getId() != null) {

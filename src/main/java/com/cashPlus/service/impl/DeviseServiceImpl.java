@@ -53,7 +53,7 @@ public class DeviseServiceImpl implements DeviseService {
 	@Override
 	public Devise convertDTOtoModel(DeviseDTO u) {
 
-		return new Devise(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), convertDTOtoModel(u).getRefUser(),
+		return new Devise(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?userService.convertDTOtoModel(u.getRefUser()):null,
 				u.getQualiteClient());
 	}
 
@@ -68,7 +68,7 @@ public class DeviseServiceImpl implements DeviseService {
 	public DeviseDTO convertModelToDTO(Devise u) {
 
 		return new DeviseDTO(u.getId(), u.getCreatedAt(), u.getUpdatedAt(), u.getBorderaux(), u.getDate(),
-				u.getMontantTransfer(), userService.convertModelToDTO(u.getRefUser()), u.getQualiteClient());
+				u.getMontantTransfer(), u.getRefUser()!=null?u.getRefUser()!=null?userService.convertModelToDTO(u.getRefUser()):null:null, u.getQualiteClient());
 	}
 
 }

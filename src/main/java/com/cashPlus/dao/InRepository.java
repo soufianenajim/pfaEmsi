@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.cashPlus.model.In;
+import com.cashPlus.model.Out;
 
 public interface InRepository extends JpaRepository<In, Long>{
 	@Query(value = "SELECT * FROM In  where  borderaux LIKE :name   ORDER BY id \n-- #pageable\n", countQuery = "SELECT count(*) FROM In where borderaux LIKE :name", nativeQuery = true)

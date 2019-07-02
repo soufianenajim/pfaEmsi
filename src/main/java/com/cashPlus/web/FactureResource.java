@@ -54,7 +54,7 @@ public class FactureResource {
 		
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		Facture facture = factureService.findById(id);
 		if (facture != null && facture.getId() != null) {

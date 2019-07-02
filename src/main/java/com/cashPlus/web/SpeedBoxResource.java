@@ -52,7 +52,7 @@ public class SpeedBoxResource {
 		return speedBoxDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		SpeedBox speedBox = speedBoxService.findById(id);
 		if (speedBox != null && speedBox.getId() != null) {

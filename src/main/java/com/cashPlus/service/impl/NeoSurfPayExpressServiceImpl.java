@@ -51,7 +51,7 @@ public class NeoSurfPayExpressServiceImpl implements NeoSurfPayExpressService {
 
 	@Override
 	public NeoSurfPayExpress convertDTOtoModel(NeoSurfPayExpressDTO u) {
-		return new NeoSurfPayExpress(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?convertDTOtoModel(u).getRefUser():null,u.getNumCommande());
+		return new NeoSurfPayExpress(u.getBorderaux(), u.getDate(), u.getMontantTransfer(), u.getRefUser()!=null?userService.convertDTOtoModel(u.getRefUser()):null,u.getNumCommande());
 	}
 
 	@Override

@@ -11,6 +11,6 @@ import org.springframework.data.repository.query.Param;
 import com.cashPlus.model.Out;
 
 public interface OutRepository extends JpaRepository<Out, Long>{
-	@Query(value = "SELECT * FROM Out  where  borderaux LIKE :name   ORDER BY id \n-- #pageable\n", countQuery = "SELECT count(*) FROM Out where  borderaux LIKE :name", nativeQuery = true)
+	@Query(value = "SELECT * FROM Out  where  borderaux LIKE :name   ORDER BY id \n-- #pageable\n", countQuery = "SELECT count(*) FROM Out where borderaux LIKE :name", nativeQuery = true)
 	Page<Out> findByCriters(Pageable pageable,@Param("name")@NotNull String name);
 }

@@ -53,7 +53,7 @@ public class TelephoneResource {
 		return telephoneDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		Telephone telephone = telephoneService.findById(id);
 		if (telephone != null && telephone.getId() != null) {

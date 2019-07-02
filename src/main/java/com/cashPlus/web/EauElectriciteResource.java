@@ -51,7 +51,7 @@ public class EauElectriciteResource {
 		return eauElectriciteDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		EauElectricite eauElectricite = eauElectriciteService.findById(id);
 		if (eauElectricite != null && eauElectricite.getId() != null) {

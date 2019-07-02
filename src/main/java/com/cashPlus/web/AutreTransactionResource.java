@@ -50,7 +50,7 @@ public class AutreTransactionResource {
 		autreTransactionDTO.setId(autreTransaction.getId());
 		return autreTransactionDTO;
 	}
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		AutreTransaction autreTransaction = autreTransactionService.findById(id);
 		if (autreTransaction != null && autreTransaction.getId() != null) {

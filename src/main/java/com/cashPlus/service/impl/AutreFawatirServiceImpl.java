@@ -54,7 +54,7 @@ public class AutreFawatirServiceImpl implements AutreFawatirService {
 	public AutreFawatir convertDTOtoModel(AutreFawatirDTO autreFawatirDTO) {
 
 		return new AutreFawatir(autreFawatirDTO.getBorderaux(), autreFawatirDTO.getDate(),
-				autreFawatirDTO.getMontantTransfer(), autreFawatirDTO.getRefUser()!=null?convertDTOtoModel(autreFawatirDTO).getRefUser():null,
+				autreFawatirDTO.getMontantTransfer(), autreFawatirDTO.getRefUser()!=null?userService.convertDTOtoModel(autreFawatirDTO.getRefUser()):null,
 				autreFawatirDTO.getFrais(), autreFawatirDTO.getRefPaiement());
 	}
 

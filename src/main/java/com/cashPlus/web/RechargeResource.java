@@ -52,7 +52,7 @@ public class RechargeResource {
 		return rechargeDTO;
 	}
 
-	@DeleteMapping(value = ConstantBase.CRUD_REST_DELETE)
+	@GetMapping(value = ConstantBase.CRUD_REST_DELETE)
 	public String delete(@RequestParam Long id) {
 		Recharge recharge = rechargeService.findById(id);
 		if (recharge != null && recharge.getId() != null) {
